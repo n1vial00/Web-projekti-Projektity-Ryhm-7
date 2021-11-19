@@ -1,8 +1,14 @@
 
 
 class Lasku {
-
-
+/**
+ * 
+ * @param {Number} laskujenM Kuinka monta laskua sivulle tehdään
+ * @param {Number} lukujenM Kuinta monta lukua per lasku
+ * @param {Boolean} plus Onko laskuissa plusmerkkejä?
+ * @param {Boolean} miinus Onko laskuissa miinusmerkkejä?
+ * @param {Boolean} kerto Onko laskuissa kertomamerkkejä?
+ */
     constructor(lukujenM, plus, miinus, kerto) {
         this.lukujenM = lukujenM;
         this.plus = plus;
