@@ -15,7 +15,7 @@ function vaihdaMatikka() {
 
 
 function matikkaToteutus()  {
-    let div = document.createElement("div");
+
     let kaikkiLaskut = new Array;
     let laskuM = document.querySelector("#laskuM");
     let lukujenM = document.querySelector("#lukujenM");
@@ -25,7 +25,13 @@ function matikkaToteutus()  {
     let miinus = document.querySelector("#miinusBox").checked;
     let kerto = document.querySelector("#kertoBox").checked;
     let vMerkit = [];
-    document.querySelector("#laskut").innerHTML = "";
+
+    // Tyhjentää laskuille tarkoitetun kentän
+    document.querySelector("#laskut").textContent = "";
+
+    if(vaihteluMin > 998 && vaihteluMax > 999) {
+
+    }
     
     if(plus) {
         vMerkit.push("+");
@@ -58,15 +64,20 @@ function tarkistaLaskut() {
     let vastaajanVastaukset = document.querySelectorAll("div#laskut>div>input");
 
     for(i = 0; i < kaikkiLaskut.length; i++) {
-        let tulos = eval(kaikkiLaskut[i].textContent)
-        if(Number(vastaajanVastaukset[i].value) === tulos) {
+        let tulos = eval(kaikkiLaskut[i].textContent);
+        if(vastaajanVastaukset[i].value === ""){
+            tarkistuskohta[i].textContent = " Et vastannut! Oikea vastaus on " + tulos;
+        } else if(Number(vastaajanVastaukset[i].value) === tulos) {
             tarkistuskohta[i].textContent = " Oikein! ";
         } else {
-            tarkistuskohta[i].textContent = " Väärin! Oikea tulos on " + tulos;
+            tarkistuskohta[i].textContent = " Väärin! Oikea vastaus on " + tulos;
         }
     }
 
 }
 
-document.querySelector("#teeLaskut").addEventListener("click", matikkaToteutus)
-document.querySelector("#tarkistaLaskutButton").addEventListener("click", tarkistaLaskut)
+document.querySelector("#teeLaskut").addEventListener("click", matikkaToteutus);
+document.querySelector("#tarkistaLaskutButton").addEventListener("click", tarkistaLaskut);
+
+
+matikkaToteutus();
