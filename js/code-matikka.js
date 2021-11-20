@@ -1,4 +1,3 @@
-let kaikkiLaskut = new Array;
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -17,7 +16,7 @@ function vaihdaMatikka() {
 
 function matikkaToteutus()  {
     let div = document.createElement("div");
-
+    let kaikkiLaskut = new Array;
     let laskuM = document.querySelector("#laskuM");
     let lukujenM = document.querySelector("#lukujenM");
     let vaihteluMin = Number(document.querySelector("#vaihteluMin").value);
@@ -26,6 +25,7 @@ function matikkaToteutus()  {
     let miinus = document.querySelector("#miinusBox").checked;
     let kerto = document.querySelector("#kertoBox").checked;
     let vMerkit = [];
+    document.querySelector("#laskut").innerHTML = "";
     
     if(plus) {
         vMerkit.push("+");
@@ -38,12 +38,16 @@ function matikkaToteutus()  {
     }
 
     for(i = 0; i < laskuM.value; i++) {
-        let randomLuku = getRndInteger(0, lukujenM - 1);
-        let lukuJono = getRndInteger(vaihteluMin, vaihteluMax);
+        let randomLuku = Number(getRndInteger(1, lukujenM.value -1));
+        let lukuJono = Number(getRndInteger(vaihteluMin, vaihteluMax));
         for(j = 0; j < randomLuku; j++) {
-            lukuJono += vMerkit[getRndInteger(0, vMerkit.length)] + " " + getRndInteger(vaihteluMin, vaihteluMax);
+            lukuJono += " " + vMerkit[getRndInteger(0, vMerkit.length - 1)] + " " + getRndInteger(vaihteluMin, vaihteluMax);
         }
         kaikkiLaskut.push(lukuJono);
+        
+    }
+    for(l = 0; l < kaikkiLaskut.length; l++) {
+        document.querySelector("#laskut").innerHTML += kaikkiLaskut[l] + ' = <input type="number"> <br>';
     }
 
 }
