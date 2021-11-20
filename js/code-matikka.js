@@ -47,11 +47,26 @@ function matikkaToteutus()  {
         
     }
     for(l = 0; l < kaikkiLaskut.length; l++) {
-        document.querySelector("#laskut").innerHTML += kaikkiLaskut[l] + ' = <input type="number"> <br>';
+        document.querySelector("#laskut").innerHTML += "<div><span class='luotuLasku'>" + kaikkiLaskut[l] + '</span> = <input type="number"><span class="oikeaVastaus"></span> </div>';
     }
 
 }
 
+function tarkistaLaskut() {
+    let kaikkiLaskut = document.querySelectorAll("div#laskut>div>span.luotuLasku");
+    let tarkistuskohta = document.querySelectorAll("div#laskut>div>span.oikeaVastaus");
+    let vastaajanVastaukset = document.querySelectorAll("div#laskut>div>input");
 
-document.querySelector("#teeLaskut").addEventListener("click",matikkaToteutus)
+    for(i = 0; i < kaikkiLaskut.length; i++) {
+        let tulos = eval(kaikkiLaskut[i].textContent)
+        if(Number(vastaajanVastaukset[i].value) === tulos) {
+            tarkistuskohta[i].textContent = " Oikein! ";
+        } else {
+            tarkistuskohta[i].textContent = " Väärin! Oikea tulos on " + tulos;
+        }
+    }
 
+}
+
+document.querySelector("#teeLaskut").addEventListener("click", matikkaToteutus)
+document.querySelector("#tarkistaLaskutButton").addEventListener("click", tarkistaLaskut)
