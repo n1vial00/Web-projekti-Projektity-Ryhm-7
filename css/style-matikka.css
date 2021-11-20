@@ -1,3 +1,15 @@
+* {
+    transition: 0.1s;
+}
+
 input[type="number"] {
     width: 80px;
+}
+
+.asetukset {
+    background-color: rgb(158, 229, 238);
+}
+
+.hidden {
+    display: none;
 }

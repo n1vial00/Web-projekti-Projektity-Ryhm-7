@@ -24,6 +24,7 @@ function matikkaToteutus()  {
     let plus = document.querySelector("#plusBox").checked;
     let miinus = document.querySelector("#miinusBox").checked;
     let kerto = document.querySelector("#kertoBox").checked;
+    let jako = document.querySelector("#jakoBox").checked;
     let vMerkit = [];
 
     // Tyhjentää laskuille tarkoitetun kentän
@@ -41,6 +42,9 @@ function matikkaToteutus()  {
     }
     if(kerto) {
         vMerkit.push("*");
+    }
+    if(jako) {
+        vMerkit.push("/");
     }
 
     for(i = 0; i < laskuM.value; i++) {
@@ -76,8 +80,12 @@ function tarkistaLaskut() {
 
 }
 
+function asetuksetToggle() {
+    document.querySelector(".asetukset").classList.toggle("hidden")
+}
+
 document.querySelector("#teeLaskut").addEventListener("click", matikkaToteutus);
 document.querySelector("#tarkistaLaskutButton").addEventListener("click", tarkistaLaskut);
-
+document.querySelector(".asetuksetToggle").addEventListener("click", asetuksetToggle);
 
 matikkaToteutus();
