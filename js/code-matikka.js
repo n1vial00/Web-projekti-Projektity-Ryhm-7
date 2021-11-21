@@ -1,3 +1,6 @@
+let tarkistusLuku = 0;
+
+
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -26,6 +29,7 @@ function matikkaToteutus()  {
     let kerto = document.querySelector("#kertoBox").checked;
     let jako = document.querySelector("#jakoBox").checked;
     let vMerkit = [];
+    let maxPisteet = 0;
 
     // Tyhjentää laskuille tarkoitetun kentän
     document.querySelector("#laskut").textContent = "";
@@ -54,30 +58,44 @@ function matikkaToteutus()  {
             lukuJono += " " + vMerkit[getRndInteger(0, vMerkit.length - 1)] + " " + getRndInteger(vaihteluMin, vaihteluMax);
         }
         kaikkiLaskut.push(lukuJono);
+        maxPisteet++;
         
     }
     for(l = 0; l < kaikkiLaskut.length; l++) {
         document.querySelector("#laskut").innerHTML += "<div><span class='luotuLasku'>" + kaikkiLaskut[l] + '</span> = <input type="number"><span class="oikeaVastaus"></span> </div>';
     }
+    document.querySelector("#maxPisteet").textContent = maxPisteet;
 
+    tarkistusLuku = 0;
 }
 
 function tarkistaLaskut() {
     let kaikkiLaskut = document.querySelectorAll("div#laskut>div>span.luotuLasku");
     let tarkistuskohta = document.querySelectorAll("div#laskut>div>span.oikeaVastaus");
     let vastaajanVastaukset = document.querySelectorAll("div#laskut>div>input");
+    let pisteet = 0;
+
+
+    if(tarkistusLuku == 1) {
+        return alert("Tehtävät on jo tarkistettu");
+    }
 
     for(i = 0; i < kaikkiLaskut.length; i++) {
         let tulos = eval(kaikkiLaskut[i].textContent);
+        if(tulos % 1 !== 0) {
+            tulos = Number(tulos).toFixed(2)
+        }
         if(vastaajanVastaukset[i].value === ""){
             tarkistuskohta[i].textContent = " Et vastannut! Oikea vastaus on " + tulos;
-        } else if(Number(vastaajanVastaukset[i].value) === tulos) {
+        } else if(Number(vastaajanVastaukset[i].value) == tulos) {
             tarkistuskohta[i].textContent = " Oikein! ";
+            pisteet++;
         } else {
             tarkistuskohta[i].textContent = " Väärin! Oikea vastaus on " + tulos;
         }
     }
-
+    document.querySelector("#pisteet").textContent = pisteet;
+    tarkistusLuku = 1;
 }
 
 function asetuksetToggle() {

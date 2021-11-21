@@ -13,7 +13,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Matikkasivu</h1>
+        <h1>Laskukone</h1>
+        <p>Laskukone tekee monenlaisia laskuja laskettavaksi. <br> Jos haluat tehdä edistyneempiä tehtäviä, voit muuttaa asetuksia sinulle sopiviksi. </p>
         <div><button class="asetuksetToggle btn btn-primary"><h2>Asetukset</h2></button></div>
         <br>
         <div class="asetukset hidden">
@@ -33,36 +34,36 @@
             <div>
                 <div>
                     <h4>
-                        <label for="plusBox">Pluslaskuja?</label>
                         <input type="checkbox" name="plusBox" id="plusBox" checked>
+                        <label for="plusBox">Pluslaskuja?</label>
                     </h4>
                 </div>
                 <div>
                     <h4>
-                        <label for="miinusBox">Miinuslaskuja?</label>
                         <input type="checkbox" name="miinusBox" id="miinusBox" checked>
+                        <label for="miinusBox">Miinuslaskuja?</label>
                     </h4>
                 </div>
                 <div>
                     <h4>
-                        <label for="kertoBox">Kertomalaskuja?</label>
                         <input type="checkbox" name="kertoBox" id="kertoBox">
+                        <label for="kertoBox">Kertomalaskuja?</label>                        
                     </h4>
                 </div>
                 <div>
                     <h4>
-                        <label for="jakoBox">Jakolaskuja?</label>
                         <input type="checkbox" name="jakoBox" id="jakoBox">
+                        <label for="jakoBox">Jakolaskuja? (Ilmoita vastaukset kahden desimaalin tarkkuudella)</label>
                     </h4>
                 </div>
             </div>
         </div>
-        <button id="teeLaskut" class="btn btn-primary">Tee laskuja</button>
+        <button id="teeLaskut" class="btn btn-primary"><h2>Tee laskuja</h2></button>
         <br>
         <br>
         <div id="laskut"></div>
         <br>
-        <button id="tarkistaLaskutButton" class="btn btn-primary">Tarkista laskut</button>
+        <div><button id="tarkistaLaskutButton" class="btn btn-primary"><h2>Tarkista laskut</h2></button> Pistemääräsi: <span id="pisteet">0</span>/<span id="maxPisteet">5</span></div>
     </div>
 
 </body>
