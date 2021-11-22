@@ -1,3 +1,4 @@
+// Koodi kopioitu https://dev.to/lucafaggianelli/interactive-svg-js-map-2ind
 // load the map SVG file from a URL
 fetch('https://simplemaps.com/static/svg/fi/fi.svg')
   // get the raw text content of SVG file as a string
