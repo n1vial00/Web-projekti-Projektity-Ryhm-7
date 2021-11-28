@@ -1,0 +1,30 @@
+header {
+    background-image: url("../pics/bg-school-supplies.jpg");
+    background-size: cover;
+}
+
+header h1 {
+    margin: 1em;
+}
+
+header .lead {
+    background: rgba(255,255,255,.9);
+    padding: 1em;
+    border-radius: 10px;
+}
+
+header, main {
+    min-height: 100vh;
+}
+
+#content {
+    background-image: url("../pics/double-bubble-outline.png");
+}
+
+/* --------- MEDIA QUERYT */
+
+@media screen and (min-width:1000px) {
+    header .container-fluid {
+        padding-right: 5em;
+    }
+}
