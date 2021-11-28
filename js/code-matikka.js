@@ -1,6 +1,10 @@
+/**
+ * Tekijä: Aleksi Viitanen
+ */
+
+
+// Tarkistusluvun osoittama arvo kertoo onko tarkistustoimintoa käytetty jo
 let tarkistusLuku = 0;
-
-
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -16,7 +20,7 @@ function vaihdaMatikka() {
     }
 }
 
-
+// Funktio luo laskut satunnaisgeneraattoria käyttäen
 function matikkaToteutus()  {
 
     let kaikkiLaskut = new Array;
@@ -33,11 +37,23 @@ function matikkaToteutus()  {
 
     // Tyhjentää laskuille tarkoitetun kentän
     document.querySelector("#laskut").textContent = "";
-
-    if(vaihteluMin > 998 && vaihteluMax > 999) {
-
-    }
     
+
+    // Tarkistetaan onko asetuksiin syötetyistä luvuista kumpikaan liian suuri tai pieni
+    if(vaihteluMax < -998) {
+        vaihteluMax = -998;
+    }
+    if(vaihteluMax > 999) {
+        vaihteluMax = 999;
+    }
+    if(vaihteluMin < -999) {
+        vaihteluMin = -999;
+    }
+    if(vaihteluMin > 998) {
+        vaihteluMin = 998;
+    }
+
+    // Lisätään välimerkit (vMerkit) taulukkoon, joiden checkbox on rastitettu
     if(plus) {
         vMerkit.push("+");
     }
@@ -50,25 +66,32 @@ function matikkaToteutus()  {
     if(jako) {
         vMerkit.push("/");
     }
-
+    // Looppi tekee niin monta laskua, kuin asetuksissa on toivottu (oletus 5)
     for(i = 0; i < laskuM.value; i++) {
-        let randomLuku = Number(getRndInteger(1, lukujenM.value -1));
+
+        // laskunPituus on sattumanvarainen luku 2 ja käyttäjän määrittämän luvun välillä. Oletus on 3, minimi 2 ja maximi 10.
+        let laskunPituus = Number(getRndInteger(1, lukujenM.value -1));
+        // Laskuun lisätään ensimmäinen luku erikseen, koska alla oleva looppi lisää aina välimerkin eteen
         let lukuJono = Number(getRndInteger(vaihteluMin, vaihteluMax));
-        for(j = 0; j < randomLuku; j++) {
+        for(j = 0; j < laskunPituus; j++) {
             lukuJono += " " + vMerkit[getRndInteger(0, vMerkit.length - 1)] + " " + getRndInteger(vaihteluMin, vaihteluMax);
         }
         kaikkiLaskut.push(lukuJono);
         maxPisteet++;
         
     }
+    
     for(l = 0; l < kaikkiLaskut.length; l++) {
         document.querySelector("#laskut").innerHTML += "<div><span class='luotuLasku'>" + kaikkiLaskut[l] + '</span> = <input type="number"><span class="oikeaVastaus"></span> </div>';
     }
+    
     document.querySelector("#maxPisteet").textContent = maxPisteet;
-
+    
     tarkistusLuku = 0;
 }
 
+
+// Funktio muuttaa laskut tekstistä koodiksi ja tarkistaa niiden oikean vastauksen. Funktio sitten tarkistaa onko käyttäjä saanut saman tuloksen.
 function tarkistaLaskut() {
     let kaikkiLaskut = document.querySelectorAll("div#laskut>div>span.luotuLasku");
     let tarkistuskohta = document.querySelectorAll("div#laskut>div>span.oikeaVastaus");
@@ -98,12 +121,17 @@ function tarkistaLaskut() {
     tarkistusLuku = 1;
 }
 
+
+// Funktio laajentaa näyttää asetusikkunan
 function asetuksetToggle() {
     document.querySelector(".asetukset").classList.toggle("hidden")
 }
 
+
+// Lisään nappeihin funktiot
 document.querySelector("#teeLaskut").addEventListener("click", matikkaToteutus);
 document.querySelector("#tarkistaLaskutButton").addEventListener("click", tarkistaLaskut);
 document.querySelector(".asetuksetToggle").addEventListener("click", asetuksetToggle);
 
 matikkaToteutus();
+

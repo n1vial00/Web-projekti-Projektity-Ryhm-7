@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,21 +12,25 @@
     <script src="../js/code.js" defer></script>
     <script src="../js/code-matikka.js" defer></script>
 </head>
+
 <body>
     <div class="container">
         <h1>Laskukone</h1>
-        <p>Laskukone tekee monenlaisia laskuja laskettavaksi. <br> Jos haluat tehdä edistyneempiä tehtäviä, voit muuttaa asetuksia sinulle sopiviksi. </p>
-        <div><button class="asetuksetToggle btn btn-primary"><h2>Asetukset</h2></button></div>
+        <p>Laskukone tekee monenlaisia laskuja laskettavaksi. <br> Jos haluat tehdä edistyneempiä tehtäviä, voit muuttaa
+            asetuksia sinulle sopiviksi. </p>
+        <div><button class="asetuksetToggle btn btn-primary">
+                <h2>Asetukset</h2>
+            </button></div>
         <br>
         <div class="asetukset hidden">
             <h2>
-                Lukujen vaihteluväli: 
+                Lukujen vaihteluväli:
                 <input type="number" id="vaihteluMin" min="-999" max="998" value="1">
                 <input type="number" id="vaihteluMax" min="-998" max="999" value="10">
             </h2>
             <h2>
                 Montako laskua?
-                <input type="number" id="laskuM" min="1" max="200" value="5">
+                <input type="range" id="laskuM" min="1" max="100" value="5">
             </h2>
             <h2>
                 Maksimi lukujen määrä?
@@ -47,7 +52,7 @@
                 <div>
                     <h4>
                         <input type="checkbox" name="kertoBox" id="kertoBox">
-                        <label for="kertoBox">Kertomalaskuja?</label>                        
+                        <label for="kertoBox">Kertomalaskuja?</label>
                     </h4>
                 </div>
                 <div>
@@ -58,13 +63,21 @@
                 </div>
             </div>
         </div>
-        <button id="teeLaskut" class="btn btn-primary"><h2>Tee laskuja</h2></button>
+        <button id="teeLaskut" class="btn btn-primary">
+            <h2>Tee laskuja</h2>
+        </button>
         <br>
         <br>
         <div id="laskut"></div>
         <br>
-        <div><button id="tarkistaLaskutButton" class="btn btn-primary"><h2>Tarkista laskut</h2></button> Pistemääräsi: <span id="pisteet">0</span>/<span id="maxPisteet">5</span></div>
+        <div>
+            <button id="tarkistaLaskutButton" class="btn btn-primary">
+                <h2>Tarkista laskut</h2>
+            </button>
+            <span class="pisteet"> Pistemääräsi: <span id="pisteet">0</span>/<span id="maxPisteet">5</span></span>
+        </div>
     </div>
-
 </body>
+
 </html>
+
