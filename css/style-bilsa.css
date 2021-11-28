@@ -1,0 +1,18 @@
+div.guessAnimal {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#guessAnimal {
+    border: solid 1px black;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+img {
+    border-radius: 10px;
+}
+
+button:last-child {
+    border-radius: 10px;
+}
