@@ -1,7 +1,20 @@
-path{
-    fill: rgb(38, 38, 216);
+p{
+    background-color: red;
 }
 
-path:hover {
-    fill: rgb(161, 161, 255);
+img {
+    height: 500px;
+    width: auto;
+}
+
+/* Kuvassa käytetty gridiä, jotta kuvat saadaan päällekkäin ilman että ne poistuvat documentin flowsta */
+#pictures {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.image {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    align-self: center;
 }
