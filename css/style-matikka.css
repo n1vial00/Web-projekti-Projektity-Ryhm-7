@@ -27,3 +27,14 @@ input[type="number"] {
     font-size: 1.5em;
 }
 
+.tyhj {
+    color: white;
+}
+
+.oikeinVastattu {
+    color: green;
+}
+
+.virhe {
+    color: red;
+}

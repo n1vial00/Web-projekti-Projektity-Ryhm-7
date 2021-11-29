@@ -1,1 +1,8 @@
+html {
+    padding: 20px;
+    text-align: center;
+}
 
+#card {
+    position: static;
+}
