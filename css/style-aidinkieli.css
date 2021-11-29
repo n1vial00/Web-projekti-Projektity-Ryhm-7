@@ -1,0 +1,5 @@
+main {
+    background-image: url('../pics/books.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
