@@ -82,9 +82,48 @@ function matikkaToteutus()  {
     }
     
     for(l = 0; l < kaikkiLaskut.length; l++) {
-        document.querySelector("#laskut").innerHTML += "<div><span class='luotuLasku'>" + kaikkiLaskut[l] + '</span> = <input type="number"><span class="oikeaVastaus"></span> </div>';
+        let div = document.createElement("div");
+        let div2 = document.createElement("div");
+        let div3 = document.createElement("div");
+        let span = document.createElement("span");
+        let span2 = document.createElement("span");
+        let yhtkMerkki = document.createElement("span");
+        let numInput = document.createElement("input");
+        
+        span.classList.add("luotuLasku");
+        span2.classList.add("oikeaVastaus", "tyhj");
+        numInput.classList.add("vastaus");
+        numInput.type="number";
+
+        span.textContent = kaikkiLaskut[l];
+        span2.textContent = "Hups mitäs kurkit sieltä O_O";
+        yhtkMerkki.textContent = " = ";
+
+        div.append(span, yhtkMerkki, numInput);
+        div2.append(span2);
+
+        div3.append(div, div2);
+        
+        document.querySelector("#laskut").append(div3);
+
+        
+
+        
+        //document.querySelector("#laskut").innerHTML += "<div><span class='luotuLasku col-4'>" + kaikkiLaskut[l] + '</span> = <input type="number"><br><span class="oikeaVastaus">&nbsp</span> </div>';
     }
+    let kaikkiLaskut = document.querySelectorAll("span.luotuLasku");
+
+    let laskuLaskuri = 0;
     
+    for(o = kaikkiLaskut.length; o > 0; o -= 5) {
+        for(k = 0; k < 5; k++) {
+            let div = document.createElement("div");
+            div.classList.add("col-4");
+            div.append(kaikkilaskut[laskuLaskuri + k]);
+            
+        }
+    }
+
     document.querySelector("#maxPisteet").textContent = maxPisteet;
     
     tarkistusLuku = 0;
@@ -93,9 +132,9 @@ function matikkaToteutus()  {
 
 // Funktio muuttaa laskut tekstistä koodiksi ja tarkistaa niiden oikean vastauksen. Funktio sitten tarkistaa onko käyttäjä saanut saman tuloksen.
 function tarkistaLaskut() {
-    let kaikkiLaskut = document.querySelectorAll("div#laskut>div>span.luotuLasku");
-    let tarkistuskohta = document.querySelectorAll("div#laskut>div>span.oikeaVastaus");
-    let vastaajanVastaukset = document.querySelectorAll("div#laskut>div>input");
+    let kaikkiLaskut = document.querySelectorAll("span.luotuLasku");
+    let tarkistuskohta = document.querySelectorAll("span.oikeaVastaus");
+    let vastaajanVastaukset = document.querySelectorAll("input.vastaus");
     let pisteet = 0;
 
 
@@ -106,17 +145,21 @@ function tarkistaLaskut() {
     for(i = 0; i < kaikkiLaskut.length; i++) {
         let tulos = eval(kaikkiLaskut[i].textContent);
         if(tulos % 1 !== 0) {
-            tulos = Number(tulos).toFixed(2)
+            tulos = Number(tulos).toFixed(2);
         }
         if(vastaajanVastaukset[i].value === ""){
             tarkistuskohta[i].textContent = " Et vastannut! Oikea vastaus on " + tulos;
+            tarkistuskohta[i].classList.add("virhe");
         } else if(Number(vastaajanVastaukset[i].value) == tulos) {
             tarkistuskohta[i].textContent = " Oikein! ";
+            tarkistuskohta[i].classList.add("oikeinVastattu");
             pisteet++;
         } else {
             tarkistuskohta[i].textContent = " Väärin! Oikea vastaus on " + tulos;
+            tarkistuskohta[i].classList.add("virhe");
         }
     }
+
     document.querySelector("#pisteet").textContent = pisteet;
     tarkistusLuku = 1;
 }
