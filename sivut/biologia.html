@@ -12,7 +12,7 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"
     defer></script>
     <!-- js ja css -->
-    <script src="../js/bilsa.js"></script>
+    <script src="../js/code-bilsa.js" defer></script>
     <link rel="stylesheet" href="../css/style-bilsa.css">
 </head>
 <body>
@@ -21,38 +21,39 @@
     <div class="guessAnimal">
         <div class="btn-group-vertical gap-1" id="guessAnimal">
             <img src="../pics/etana.jpg" alt="">
-            <button type="button" class="btn btn-primary">Koira</button>
-            <button type="button" class="btn btn-primary">Etana</button>
-            <button type="button" class="btn btn-primary">Kirahvi</button>
-            <button type="button" class="btn btn-primary">Kärpänen</button>
+            <button type="button" class="btn btn-success" id="incorrect">Koira</button>
+            <button type="button" class="btn btn-success" id="correct">Etana</button>
+            <button type="button" class="btn btn-success" id="incorrect">Kirahvi</button>
+            <button type="button" class="btn btn-success" id="incorrect">Kärpänen</button>
+            <p id="result"></p>
         </div>
         <div class="btn-group-vertical gap-1" id="guessAnimal">
             <img src="../pics/koira.jpg" alt="">
-            <button type="button" class="btn btn-primary">Koira</button>
-            <button type="button" class="btn btn-primary">Kana</button>
-            <button type="button" class="btn btn-primary">Hylje</button>
-            <button type="button" class="btn btn-primary">Susi</button>
+            <button type="button" class="btn btn-success" id="correct">Koira</button>
+            <button type="button" class="btn btn-success" id="incorrect">Kana</button>
+            <button type="button" class="btn btn-success" id="incorrect">Hylje</button>
+            <button type="button" class="btn btn-success" id="incorrect">Susi</button>
         </div>
         <div class="btn-group-vertical gap-1" id="guessAnimal">
             <img src="../pics/kani.jpg" alt=""> 
-            <button type="button" class="btn btn-primary">Hiiri</button>
-            <button type="button" class="btn btn-primary">Etana</button>
-            <button type="button" class="btn btn-primary">Kukko</button>
-            <button type="button" class="btn btn-primary">Kani</button>
+            <button type="button" class="btn btn-success" id="incorrect">Hiiri</button>
+            <button type="button" class="btn btn-success" id="incorrect">Etana</button>
+            <button type="button" class="btn btn-success" id="incorrect">Kukko</button>
+            <button type="button" class="btn btn-success" id="correct">Kani</button>
         </div>
         <div class="btn-group-vertical gap-1" id="guessAnimal">
             <img src="../pics/kirahvi.jpg" alt="">
-            <button type="button" class="btn btn-primary">Kettu</button>
-            <button type="button" class="btn btn-primary">Leijona</button>
-            <button type="button" class="btn btn-primary">Kirahvi</button>
-            <button type="button" class="btn btn-primary">Lintu</button>
+            <button type="button" class="btn btn-success" id="incorrect">Kettu</button>
+            <button type="button" class="btn btn-success" id="incorrect">Leijona</button>
+            <button type="button" class="btn btn-success" id="correct">Kirahvi</button>
+            <button type="button" class="btn btn-success" id="incorrect">Lintu</button>
         </div>
         <div class="btn-group-vertical gap-1" id="guessAnimal">
             <img src="../pics/tiikeri.jpg" alt="">
-            <button type="button" class="btn btn-primary">Pöllö</button>
-            <button type="button" class="btn btn-primary">Ilves</button>
-            <button type="button" class="btn btn-primary">Kissa</button>
-            <button type="button" class="btn btn-primary">Tiikeri</button>
+            <button type="button" class="btn btn-success" id="incorrect">Pöllö</button>
+            <button type="button" class="btn btn-success" id="incorrect">Ilves</button>
+            <button type="button" class="btn btn-success" id="incorrect">Kissa</button>
+            <button type="button" class="btn btn-success" id="correct">Tiikeri</button>
         </div>
     </div>
 </body>
