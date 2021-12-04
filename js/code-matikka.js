@@ -111,7 +111,7 @@ function matikkaToteutus()  {
         
         //document.querySelector("#laskut").innerHTML += "<div><span class='luotuLasku col-4'>" + kaikkiLaskut[l] + '</span> = <input type="number"><br><span class="oikeaVastaus">&nbsp</span> </div>';
     }
-    let kaikkiLaskut = document.querySelectorAll("span.luotuLasku");
+    kaikkiLaskut = document.querySelectorAll("span.luotuLasku");
 
     let laskuLaskuri = 0;
     
