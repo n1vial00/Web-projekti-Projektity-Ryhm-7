@@ -18,3 +18,7 @@ img {
     grid-row: 1/2;
     align-self: center;
 }
+
+#Buttons {
+    padding-top: 15px;
+}
