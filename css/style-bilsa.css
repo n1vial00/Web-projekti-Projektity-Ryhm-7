@@ -16,3 +16,7 @@ img {
 button:last-child {
     border-radius: 10px;
 }
+
+.correct {
+    background-color: green;
+}
