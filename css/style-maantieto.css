@@ -1,7 +1,3 @@
-p{
-    background-color: red;
-}
-
 img {
     height: 500px;
     width: auto;
@@ -21,4 +17,20 @@ img {
 
 #Buttons {
     padding-top: 15px;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
 }
