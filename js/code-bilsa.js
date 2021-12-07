@@ -1,14 +1,11 @@
-let etana = document.getElementById('etana');
-
-for (let i = 0; i < etana.length; i++) {
-  etana[i].onclick = guessEtana;
-}
-
 function guessEtana() {
   let etana = document.getElementById('etana');
-  if (etana.textContent == 'Etana') {
-      document.getElementById('result').innerHTML = 'Oikein!'
+  let text = etana.textContent || etana.innerHTML
+  alert(text)
+
+  if (text === 'Etana') {
+      console.log('Oikein');
   } else {
-      document.getElementById('result').innerHTML = 'Väärin!'
+      console.log('Väärin');
   }
 }
