@@ -24,7 +24,6 @@ header, main {
 /* Testiä */
 
 embed {
-    height: 90vh;
     width: 100vw;
     margin: 0px;
     padding: 0px;
@@ -38,3 +37,4 @@ embed {
         padding-right: 5em;
     }
 }
+
