@@ -1,10 +1,11 @@
-let buttons = document.getElementsByClassName("btn btn-success");
-for (let i = 0; i < buttons.length; i++) {
-  buttons[i].onclick = guessResult;
-}
+function guessEtana() {
+  let etana = document.getElementById('etana');
+  let text = etana.textContent || etana.innerHTML
+  alert(text)
 
-function guessResult() {
-    let incorrect = document.getElementById('incorrect');
-    let etana = incorrect.textContent
-    console.log(etana);
+  if (text === 'Etana') {
+      console.log('Oikein');
+  } else {
+      console.log('Väärin');
+  }
 }
