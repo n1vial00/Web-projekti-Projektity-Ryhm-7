@@ -1,11 +1,14 @@
-function guessEtana() {
-  let etana = document.getElementById('etana');
-  let text = etana.textContent || etana.innerHTML
-  alert(text)
+function etanaT() {
+  document.getElementById('koira').addEventListener('click', guessEtana)
+  document.getElementById('etana').addEventListener('click', guessEtana)
+  document.getElementById('kirahvi').addEventListener('click', guessEtana)
+  document.getElementById('karpanen').addEventListener('click', guessEtana)
 
-  if (text === 'Etana') {
-      console.log('Oikein');
-  } else {
-      console.log('Väärin');
+  let etana = document.getElementById('etana')
+
+  function guessEtana() {
+    if (etana) {
+      etana.classList.add()
+    }
   }
 }
