@@ -15,6 +15,9 @@
     <p>Let's test your skills in english language!
             <img src="../pics/unionjack.png.png" alt="" style="width: 40px;">
         </p>
+        <div><hr></div>
+
+        
     <div id="container">
        
         
@@ -24,7 +27,7 @@
                     <img src="../pics/cat.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">Kysymys 1.</h5>
-                      <p class="card-text">Mikä on kissa englanniksi? Valitse seuraavista.</p>
+                      <p class="card-text" id="question">Mikä on kissa englanniksi? Valitse seuraavista.</p>
                       <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                           Valitse
@@ -43,8 +46,8 @@
                 <div class="card" style="width: 18rem;">
                     <img src="../pics/sorry.png" class="card-img-top" alt="..." style="height: 200px;">
                     <div class="card-body">
-                      <h5 class="card-title">Kysymys 2.</h5>
-                      <p class="card-text">Miten pyydät anteeksi englanniksi? Valitse seuraavista.</p>
+                      <h5 class="card-title" >Kysymys 2.</h5>
+                      <p class="card-text" id="question">Miten pyydät anteeksi englanniksi? Valitse seuraavista.</p>
                       <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                           Valitse
@@ -64,8 +67,8 @@
                 <div class="card" style="width: 18rem;">
                     <img src="../pics/classroom.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Kysymys 3.</h5>
-                      <p class="card-text">Olet kysymässä koulun sijaintia, miten sanot? Valitse seuraavista.</p>
+                      <h5 class="card-title" >Kysymys 3.</h5>
+                      <p class="card-text" id="question">Olet kysymässä koulun sijaintia, miten sanot? Valitse seuraavista.</p>
                       <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                           Valitse
@@ -95,7 +98,7 @@
                 <img src="../pics/jungle.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Kysymys 4.</h5>
-                  <p class="card-text">Mikä on sademetsä englanniksi? Valitse seuraavista.</p>
+                  <p class="card-text" id="question">Mikä on sademetsä englanniksi? Valitse seuraavista.</p>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                       Valitse
@@ -106,7 +109,7 @@
                       <li><a class="dropdown-item" href="#">Lapland</a></li>
                       <li><a class="dropdown-item" href="#">Grainforest</a></li>
                     </ul>
-                    <button type="button" class="btn btn-primary">Tarkista</button>
+                    <button type="button" class="btn btn-primary" onclick="tarkista()">Tarkista</button>
                   </div>
                 </div>
               </div>
@@ -116,7 +119,7 @@
                 <img src="../pics/snowflake.jpg" class="card-img-top" alt="..." ">
                 <div class="card-body">
                   <h5 class="card-title">Kysymys 5.</h5>
-                  <p class="card-text">Mikä on lumihiutale englanniksi? Valitse seuraavista.</p>
+                  <p class="card-text" id="question">Mikä on lumihiutale englanniksi? Valitse seuraavista.</p>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                       Valitse
@@ -128,6 +131,7 @@
                     </ul>
                     <button type="button" class="btn btn-primary">Tarkista</button>
                   </div>
+                  <p>Vastauksesi on oikein!</p>
                 </div>
               </div>
         </div>
@@ -136,7 +140,7 @@
                 <img src="../pics/avaruusalus.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Kysymys 6.</h5>
-                  <p class="card-text">Mikä on avaruusalus englanniksi? Valitse seuraavista.</p>
+                  <p class="card-text" id="question">Mikä on avaruusalus englanniksi? Valitse seuraavista.</p>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                       Valitse
