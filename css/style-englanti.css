@@ -3,10 +3,15 @@ html {
     text-align: left;
     font-size: x-large;
     height: 100%;
+    
+}
+
+body {
 }
 
 h2 {
     font-family: monospace;
+    margin-left: 4.5em;
 }
 
 #container {
@@ -22,12 +27,19 @@ div {
 hr {
     border: 8px solid darkcyan;
     width: 18em;
+    margin-left: 3em;
 }
 
 #list-example {
     max-width: 18em;
+    min-width: 150px;
+    margin-left: 3.4em;
 }
 
 #answer {
     color: goldenrod;
+}
+
+#skills {
+    margin-left: 3rem;
 }
