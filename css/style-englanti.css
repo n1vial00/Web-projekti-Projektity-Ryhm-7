@@ -27,3 +27,7 @@ hr {
 #list-example {
     max-width: 18em;
 }
+
+#answer {
+    color: goldenrod;
+}

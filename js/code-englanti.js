@@ -6,11 +6,13 @@
 
 //Tarkista - funktio
 function tarkista() {
-    alert("Good job kiddo!");
+    document.getElementById("answer").innerHTML = " Vastauksesi on <h3>oikein!<h3> ";
+    document.getElementById("answer").innerHTML = " Vastauksesi on <h3>oikein!<h3> ";
 }
 // Funktio jolla saadaan vastausvaihtoehto klikkauksella napin otsikoksi
 function getSelectValue() {
-    let selectedValue = document.getElementsByClassName("dropdown-menu").value;
+
+    let selectedValue = document.getElementById("list").value;
     console.log(selectedValue);
 }
 // Kysymykset
