@@ -42,12 +42,12 @@
                       <p class="card-text" id="question">Mikä on kissa englanniksi? Valitse seuraavista.</p>
                       <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          Valitse
+                          <span onchange="getSelectValue();"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" href="#">Lion</a></li>
-                          <li><a class="dropdown-item" href="#">Cat</a></li>
-                          <li><a class="dropdown-item" href="#">Mouse</a></li>
+                          <li><a class="dropdown-item" value="Lion">Lion</a></li>
+                          <li><a class="dropdown-item" value="Cat">Cat</a></li>
+                          <li><a class="dropdown-item" value="Mouse">Mouse</a></li>
                         </ul>
                         <button type="button" class="btn btn-primary">Tarkista</button>
                       </div>
