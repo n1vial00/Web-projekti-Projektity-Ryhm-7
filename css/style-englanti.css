@@ -3,15 +3,12 @@ html {
     text-align: left;
     font-size: x-large;
     height: 100%;
-    
-}
-
-body {
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 238, 255));
 }
 
 h2 {
     font-family: monospace;
-    margin-left: 4.5em;
+    margin-left: 4.2em;
 }
 
 #container {
@@ -27,13 +24,13 @@ div {
 hr {
     border: 8px solid darkcyan;
     width: 18em;
-    margin-left: 3em;
+    margin-left: 1.4em;
 }
 
 #list-example {
     max-width: 18em;
     min-width: 150px;
-    margin-left: 3.4em;
+    margin-left: 1.8em;
 }
 
 #answer {
@@ -41,5 +38,5 @@ hr {
 }
 
 #skills {
-    margin-left: 3rem;
+    margin-left: 2.2rem;
 }
