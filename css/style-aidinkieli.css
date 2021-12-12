@@ -1,5 +1,71 @@
+/* --- Yleiset */
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.visible {
+    display: block;
+    visibility: visible;
+}
+
+/* --- Typografia */
+
+h2 > span {
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+.correct {
+    color: green;
+}
+
+.wrong {
+    color: red;
+}
+
+.explanation {
+    color: orange;
+    font-style: italic;
+}
+
+/* --- Yleinen rakenne */
+
 main {
     background-image: url('../pics/books.jpg');
     background-size: cover;
     background-attachment: fixed;
+}
+
+/* --- Kysymykset */
+
+.question-container {
+    background: rgba(255, 255, 255, .8);
+    padding: 1.5em;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.question {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    padding-bottom: 1em;
+}
+
+.question:last-child {
+    border: 0;
+    padding: 0;
+}
+
+.question {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1em;
+    align-items: center;
+    justify-content: start;
+}
+
+#q1 .explanation {
+    grid-column: 1/-1;
 }
