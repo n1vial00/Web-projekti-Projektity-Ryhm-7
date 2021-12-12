@@ -1,6 +1,6 @@
 window.onload = calculateHeightForElements;
 
-// -------- FUKTIOT
+// -------- FUNKTIOT
 
 /**
  * Laskee korkeuden headerille perustuen navbarin korkeuteen
