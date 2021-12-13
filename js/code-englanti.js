@@ -4,11 +4,7 @@
 // Projektiryhmä 7
 
 
-//Tarkista - funktio
-function tarkista() {
-    document.getElementById("answer").innerHTML = " Vastauksesi on <h3>oikein!<h3> ";
-    
-}
+
 // Funktio jolla saadaan vastausvaihtoehto klikkauksella napin otsikoksi
 function getSelectValue1() {
 
@@ -94,5 +90,16 @@ const questions = [
         ],
     },
     
-]
+];
 
+//Tarkista - funktio
+function tarkista() {
+    let answers = questions.value;
+
+    if (getSelectValue1.answers == true)
+    document.getElementById("answer").innerHTML = " Vastauksesi on <h3>oikein!<h3> ";
+    else {
+        document.getElementById("answer").innerHTML = " Vastauksesi on <h3>väärin!<h3> ";
+    }
+    
+}
