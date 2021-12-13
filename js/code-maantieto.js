@@ -1,4 +1,4 @@
-let images = [document.getElementById("Oulu"), document.getElementById("Turku"), document.getElementById("Helsinki"), document.getElementById("Joensuu"), document.getElementById("Tampere")]
+let images = [document.getElementById("Oulu"), document.getElementById("Turku"), document.getElementById("Helsinki"), document.getElementById("Joensuu"), document.getElementById("Tampere"), document.getElementById("palkinto")]
 let score = 0
 
 // Funktio tarkistaa oikean kuvan ja napin ja muutta oikean vastauksen taustavärin
@@ -42,10 +42,12 @@ function nextMap(map, next) {
 
 // Nappien onclick, mitkä ajavat edeltävät funktiot.
 // Nappien if lause tarkistaa onko vastaus saatu oikein. Jos ei ole nextMap funktiota ei ajeta
+// disableButton poistaa napin käytöstä
 document.getElementById("OuluButton").onclick = function() { 
     checkAnwser(document.getElementById("Oulu"), document.getElementById("OuluButton"))
     if (document.getElementById("OuluButton").classList.contains("correct")) {
     nextMap(document.getElementById("Oulu"), document.getElementById("Turku"))
+    disableButtons(document.getElementById("OuluButton"))
     }
 }
 
@@ -53,6 +55,7 @@ document.getElementById("TurkuButton").onclick = function() {
     checkAnwser(document.getElementById("Turku"), document.getElementById("TurkuButton"))
     if (document.getElementById("TurkuButton").classList.contains("correct")) {
     nextMap(document.getElementById("Turku"), document.getElementById("Helsinki"))
+    disableButtons(document.getElementById("TurkuButton"))
     }
 }
 
@@ -60,6 +63,7 @@ document.getElementById("HelsinkiButton").onclick = function() {
     checkAnwser(document.getElementById("Helsinki"), document.getElementById("HelsinkiButton"))
     if (document.getElementById("HelsinkiButton").classList.contains("correct")) {
     nextMap(document.getElementById("Helsinki"), document.getElementById("Joensuu"))
+    disableButtons(document.getElementById("HelsinkiButton"))
     }
 }
 
@@ -67,13 +71,21 @@ document.getElementById("JoensuuButton").onclick = function() {
     checkAnwser(document.getElementById("Joensuu"), document.getElementById("JoensuuButton"))
     if (document.getElementById("JoensuuButton").classList.contains("correct")) {
     nextMap(document.getElementById("Joensuu"), document.getElementById("Tampere"))
+    disableButtons(document.getElementById("JoensuuButton"))
     }
 }
 
 document.getElementById("TampereButton").onclick = function() { 
     checkAnwser(document.getElementById("Tampere"), document.getElementById("TampereButton"))
     if (document.getElementById("TampereButton").classList.contains("correct")) {
-    nextMap(document.getElementById("Tampere"), document.getElementById("Joensuu"))
+    nextMap(document.getElementById("Tampere"), document.getElementById("palkinto"))
+    disableButtons(document.getElementById("TampereButton"))
     document.getElementById("again").classList.add("visible")
+    }
+}
+
+function disableButtons(button) {
+    if (button.classList.contains("correct")) {
+        button.disabled = true
     }
 }
