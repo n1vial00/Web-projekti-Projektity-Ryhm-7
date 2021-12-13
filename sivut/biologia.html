@@ -51,41 +51,73 @@
 
     <h1>Biologia</h1>
     <h4>Mikä eläin?</h4>
+    <h6>Kirjoita vastaukset kuvien alla oleviin tekstikenttiin.</h6>
     <div class="guessAnimal">
-        <div class="btn-group-vertical gap-1" id="guessAnimal" class="etana">
+        <div id="guessAnimal" class="etana">
             <img src="../pics/etana.jpg" alt="">
-            <button type="button" class="btn btn-success" id="koira">Koira</button>
-            <button type="button" class="btn btn-success" id="etana">Etana</button>
-            <button type="button" class="btn btn-success" id="kirahvi">Kirahvi</button>
-            <button type="button" class="btn btn-success" id="karpanen">Kärpänen</button>
+            <div>
+                <input type="text" id="etana">
+                <button type="button" onclick="checkEtana()">Tarkista</button>
+            </div>
+            <ul>
+                <li>Koira</li>
+                <li>Etana</li>
+                <li>Perhonen</li>
+                <li>Kärpänen</li>
+            </ul>
         </div>
-        <div class="btn-group-vertical gap-1" id="guessAnimal" class="koira">
+        <div id="guessAnimal" class="koira">
             <img src="../pics/koira.jpg" alt="">
-            <button type="button" class="btn btn-success" id="correct">Koira</button>
-            <button type="button" class="btn btn-success" id="incorrect">Kana</button>
-            <button type="button" class="btn btn-success" id="incorrect">Hylje</button>
-            <button type="button" class="btn btn-success" id="incorrect">Susi</button>
+            <div>
+                <input type="text" id="koira">
+                <button type="button" onclick="checkKoira()">Tarkista</button>
+            </div>
+            <ul>
+                <li>Karhu</li>
+                <li>Possu</li>
+                <li>Koira</li>
+                <li>Hiiri</li>
+            </ul>
         </div>
-        <div class="btn-group-vertical gap-1" id="guessAnimal" class="kani">
+        <div id="guessAnimal" class="kani">
             <img src="../pics/kani.jpg" alt=""> 
-            <button type="button" class="btn btn-success" id="incorrect">Hiiri</button>
-            <button type="button" class="btn btn-success" id="incorrect">Etana</button>
-            <button type="button" class="btn btn-success" id="incorrect">Kukko</button>
-            <button type="button" class="btn btn-success" id="correct">Kani</button>
+            <div>
+                <input type="text" id="kani">
+                <button type="button" onclick="checkKani()">Tarkista</button>
+            </div>
+            <ul>
+                <li>Koira</li>
+                <li>Etana</li>
+                <li>Perhonen</li>
+                <li>Hiiri</li>
+            </ul>
         </div>
-        <div class="btn-group-vertical gap-1" id="guessAnimal" class="kirahvi">
+        <div id="guessAnimal" class="kirahvi">
             <img src="../pics/kirahvi.jpg" alt="">
-            <button type="button" class="btn btn-success" id="incorrect">Kettu</button>
-            <button type="button" class="btn btn-success" id="incorrect">Leijona</button>
-            <button type="button" class="btn btn-success" id="correct">Kirahvi</button>
-            <button type="button" class="btn btn-success" id="incorrect">Lintu</button>
+            <div>
+                <input type="text" id="kirahvi">
+                <button type="button" onclick="checkKirahvi()">Tarkista</button>
+            </div>
+            <ul>
+                <li>Koira</li>
+                <li>Etana</li>
+                <li>Perhonen</li>
+                <li>Hiiri</li>
+            </ul>
         </div>
-        <div class="btn-group-vertical gap-1" id="guessAnimal" class="tiikeri">
+        <div id="guessAnimal" class="tiikeri">
             <img src="../pics/tiikeri.jpg" alt="">
-            <button type="button" class="btn btn-success" id="incorrect">Pöllö</button>
-            <button type="button" class="btn btn-success" id="incorrect">Ilves</button>
-            <button type="button" class="btn btn-success" id="incorrect">Kissa</button>
-            <button type="button" class="btn btn-success" id="correct">Tiikeri</button>
+            <div>
+                <input type="text" id="tiikeri">
+                <button type="button" onclick="checkTiikeri()">Tarkista</button>
+            </div>
+            <ul>
+                <li>Koira</li>
+                <li>Etana</li>
+                <li>Perhonen</li>
+                <li>Hiiri</li>
+            </ul>
+        </div>
         </div>
     </div>
 

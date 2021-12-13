@@ -1,17 +1,59 @@
-document.getElementById('koira').addEventListener('click', guessEtana)
-document.getElementById('etana').addEventListener('click', guessEtana)
-document.getElementById('kirahvi').addEventListener('click', guessEtana)
-document.getElementById('karpanen').addEventListener('click', guessEtana)
+function checkEtana() {
+  let etana = document.getElementById('etana').value;
 
-let etana = document.getElementById('etana')
-let koira = document.getElementById('koira')
-let kirahvi = document.getElementById('kirahvi')
-let karpanen = document.getElementById('karpanen')
+  if (etana == 'Etana') {
+    console.log('Oikein!');
+  } else if (etana == 'etana') {
+    console.log('Oikein!');
+  } else {
+    console.log('Väärin!');
+  }
+}
 
-function guessEtana() {
-  if (etana) {
-    console.log('oikein');
-  } else if(koira){
-    console.log('väärin');
+function checkKoira() {
+  let koira = document.getElementById('koira').value;
+
+  if (koira == 'Koira') {
+    console.log('Oikein!');
+  } else if (koira == 'koira') {
+    console.log('Oikein!');
+  } else {
+    console.log('Väärin!');
+  }
+}
+
+function checkKani() {
+  let kani = document.getElementById('kani').value;
+
+  if (kani == 'Kani') {
+    console.log('Oikein!');
+  } else if (kani == 'kani') {
+    console.log('Oikein!');
+  } else {
+    console.log('Väärin!');
+  }
+}
+
+function checkKirahvi() {
+  let kirahvi = document.getElementById('kirahvi').value;
+
+  if (kirahvi == 'Kirahvi') {
+    console.log('Oikein!');
+  } else if (kirahvi == 'kirahvi') {
+    console.log('Oikein!');
+  } else {
+    console.log('Väärin!');
+  }
+}
+
+function checkTiikeri() {
+  let tiikeri = document.getElementById('tiikeri').value;
+
+  if (tiikeri == 'Tiikeri') {
+    console.log('Oikein!');
+  } else if (tiikeri == 'tiikeri') {
+    console.log('Oikein!');
+  } else {
+    console.log('Väärin!');
   }
 }

@@ -13,7 +13,9 @@ img {
     border-radius: 10px;
 }
 
-button:last-child {
-    border-radius: 10px;
+.guessAnimal button {
+    background-color: lightgreen;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
