@@ -20,6 +20,30 @@ function vaihdaMatikka() {
     }
 }
 
+
+
+function asetusLogiikka(index) {
+    let vaihtelut = document.querySelectorAll(".vaihtelut");
+    switch(index) {
+        case 0:
+        case 2:
+            vaihtelut[index+1].value = vaihtelut[index].value;
+            break;
+        case 1: 
+        case 3:
+            vaihtelut[index-1].value = vaihtelut[index].value;
+            break;
+    }
+
+    if(Number(vaihtelut[0].value) > Number(vaihtelut[2].value)) {
+        vaihtelut[3].value = vaihtelut[0].value;
+        vaihtelut[2].value = vaihtelut[0].value;
+        asetusLogiikka(index);
+    }
+
+}
+
+
 // Funktio luo laskut satunnaisgeneraattoria käyttäen
 function matikkaToteutus() {
 
@@ -32,26 +56,18 @@ function matikkaToteutus() {
     let miinus = document.querySelector("#miinusBox").checked;
     let kerto = document.querySelector("#kertoBox").checked;
     let jako = document.querySelector("#jakoBox").checked;
+    let nega = document.querySelector("#negaBox").checked;
     let vMerkit = [];
     let maxPisteet = 0;
 
     // Tyhjentää laskuille tarkoitetun kentän
     document.querySelector("#laskut").textContent = "";
-    
 
-    // Tarkistetaan onko asetuksiin syötetyistä luvuista kumpikaan liian suuri tai pieni
-    if(vaihteluMax < 0) {
-        vaihteluMax = 0;
+    // Tarkistetaan onko lukujen määrä enemmän kuin 2
+    if(lukujenM < 2) {
+        lukujenM = 2;
     }
-    if(vaihteluMax > 999) {
-        vaihteluMax = 999;
-    }
-    if(vaihteluMin < 0) {
-        vaihteluMin = 0;
-    }
-    if(vaihteluMin > 998) {
-        vaihteluMin = 998;
-    }
+
 
     // Lisätään välimerkit (vMerkit) taulukkoon, joiden checkbox on rastitettu
     if(plus) {
@@ -76,7 +92,7 @@ function matikkaToteutus() {
         for(j = 0; j < laskunPituus; j++) {
             lukuJono += " " + vMerkit[getRndInteger(0, vMerkit.length - 1)] + " " + getRndInteger(vaihteluMin, vaihteluMax);
         }
-        if(eval(lukuJono) > 0) {
+        if(nega || eval(lukuJono) > 0) {
         kaikkiLaskut.push(lukuJono);
         maxPisteet++;
         } else {
@@ -95,7 +111,7 @@ function matikkaToteutus() {
         let yhtkMerkki = document.createElement("span");
         let numInput = document.createElement("input");
         
-        div3.classList.add("col-md-4", "col-lg-3", "col-sm-6")
+        div3.classList.add("col-md-4", "col-lg-3", "col-sm-6", "border")
         span.classList.add("luotuLasku");
         span2.classList.add("oikeaVastaus", "tyhj");
         numInput.classList.add("vastaus");
@@ -131,7 +147,7 @@ function tarkistaLaskut() {
 
 
     if(tarkistusLuku == 1) {
-        return alert("Tehtävät on jo tarkistettu");
+        return alert("Tehtävät on jo tarkistettu. Tee uusia laskuja painamalla 'Tee laskuja' -painiketta");
     }
 
     for(i = 0; i < kaikkiLaskut.length; i++) {
@@ -167,6 +183,10 @@ function asetuksetToggle() {
 document.querySelector("#teeLaskut").addEventListener("click", matikkaToteutus);
 document.querySelector("#tarkistaLaskutButton").addEventListener("click", tarkistaLaskut);
 document.querySelector(".asetuksetToggle").addEventListener("click", asetuksetToggle);
+
+
+document.querySelectorAll(".vaihtelut").forEach((e, i) => e.onchange = function() { asetusLogiikka(i)
+});
 
 
 matikkaToteutus();
