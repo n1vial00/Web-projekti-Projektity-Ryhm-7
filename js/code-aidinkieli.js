@@ -5,8 +5,8 @@
 */
 
 /* --- GLOBAALIT MUUTTUJAT */
-
-const BUTTONS = document.getElementsByTagName("button");
+const MAIN = document.getElementById("main-content");
+const BUTTONS = MAIN.getElementsByTagName("button");
 const ALERTS = document.querySelectorAll(".alert");
 const CORRECT_ANSWERS = [];
 
@@ -15,6 +15,18 @@ let answeredQuestions = 0;
 
 BUTTONS[0].addEventListener("click", checkAnswers1);
 BUTTONS[1].addEventListener("click", checkAnswers2);
+
+/* --- VASTAUSTEN TYHJENNYS */
+const ALL_INPUTS = document.querySelectorAll("input");
+ALL_INPUTS.forEach(input => {
+    input.value = "";
+});
+
+const ALL_SELECTS = document.querySelectorAll("select");
+ALL_SELECTS.forEach(select => {
+    select.selectedIndex = 0;
+});
+
 
 /* --- BUTTONIEN FUNKTIOT */
 

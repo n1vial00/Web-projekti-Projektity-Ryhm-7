@@ -1,6 +1,20 @@
+body {
+    background-color: rgb(33, 37, 41);
+    color: rgb(69, 114, 116);
+    background-image: url(../pics/maantieto-tausta.jpg);
+}
+
+h1 {
+    padding-top: 10px;
+}
+
 img {
     height: 500px;
     width: auto;
+}
+
+.row {
+    padding: 5px;
 }
 
 /* Kuvassa käytetty gridiä, jotta kuvat saadaan päällekkäin ilman että ne poistuvat documentin flowsta */
@@ -19,18 +33,27 @@ img {
     padding-top: 15px;
 }
 
+.btn {
+    color: cornsilk;
+    background-color: rgb(41, 56, 139);
+}
+
 .visible {
-    visibility: visible;
+    visibility: visible !important;
 }
 
 .hidden {
-    visibility: hidden;
+    visibility: hidden !important;
 }
 
 .correct {
-    background-color: green;
+    background-color: green !important;
 }
 
-.incorrect {
-    background-color: red;
+#score {
+    font-size: large;
+}
+
+#again {
+    visibility: hidden;
 }

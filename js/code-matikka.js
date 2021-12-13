@@ -21,7 +21,7 @@ function vaihdaMatikka() {
 }
 
 // Funktio luo laskut satunnaisgeneraattoria käyttäen
-function matikkaToteutus()  {
+function matikkaToteutus() {
 
     let kaikkiLaskut = new Array;
     let laskuM = document.querySelector("#laskuM");
@@ -40,14 +40,14 @@ function matikkaToteutus()  {
     
 
     // Tarkistetaan onko asetuksiin syötetyistä luvuista kumpikaan liian suuri tai pieni
-    if(vaihteluMax < -998) {
-        vaihteluMax = -998;
+    if(vaihteluMax < 0) {
+        vaihteluMax = 0;
     }
     if(vaihteluMax > 999) {
         vaihteluMax = 999;
     }
-    if(vaihteluMin < -999) {
-        vaihteluMin = -999;
+    if(vaihteluMin < 0) {
+        vaihteluMin = 0;
     }
     if(vaihteluMin > 998) {
         vaihteluMin = 998;
@@ -76,9 +76,12 @@ function matikkaToteutus()  {
         for(j = 0; j < laskunPituus; j++) {
             lukuJono += " " + vMerkit[getRndInteger(0, vMerkit.length - 1)] + " " + getRndInteger(vaihteluMin, vaihteluMax);
         }
+        if(eval(lukuJono) > 0) {
         kaikkiLaskut.push(lukuJono);
         maxPisteet++;
-        
+        } else {
+            i--;
+        }
     }
     let row = document.createElement("div");
     row.classList.add("row");
@@ -92,7 +95,7 @@ function matikkaToteutus()  {
         let yhtkMerkki = document.createElement("span");
         let numInput = document.createElement("input");
         
-        div3.classList.add("col-4")
+        div3.classList.add("col-md-4", "col-lg-3", "col-sm-6")
         span.classList.add("luotuLasku");
         span2.classList.add("oikeaVastaus", "tyhj");
         numInput.classList.add("vastaus");
@@ -110,9 +113,6 @@ function matikkaToteutus()  {
         row.append(div3);
 
         
-
-        
-        // document.querySelector("#laskut").innerHTML += "<div><span class='luotuLasku col-4'>" + kaikkiLaskut[l] + '</span> = <input type="number"><br><span class="oikeaVastaus">&nbsp</span> </div>';
     }
     document.querySelector("#laskut").append(row);
     
@@ -159,7 +159,7 @@ function tarkistaLaskut() {
 
 // Funktio laajentaa näyttää asetusikkunan
 function asetuksetToggle() {
-    document.querySelector(".asetukset").classList.toggle("hidden")
+    document.querySelector(".asetukset").classList.toggle("collapse")
 }
 
 
@@ -167,6 +167,7 @@ function asetuksetToggle() {
 document.querySelector("#teeLaskut").addEventListener("click", matikkaToteutus);
 document.querySelector("#tarkistaLaskutButton").addEventListener("click", tarkistaLaskut);
 document.querySelector(".asetuksetToggle").addEventListener("click", asetuksetToggle);
+
 
 matikkaToteutus();
 

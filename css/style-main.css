@@ -19,16 +19,8 @@ header, main {
 
 #content {
     background-image: url("../pics/double-bubble-outline.png");
+    padding: 1em;
 }
-
-/* Testiä */
-
-embed {
-    width: 100vw;
-    margin: 0px;
-    padding: 0px;
-}
-
 
 /* --------- MEDIA QUERYT */
 
