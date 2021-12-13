@@ -8,13 +8,6 @@ input[type="number"] {
     margin: 5px;
 }
 
-.hidden {
-    height: 0px;
-    overflow: hidden;
-    margin: 0px;
-    padding: 0px;
-}
-
 #laskut>div>span {
     font-size: 1.5em;
 }
@@ -37,4 +30,8 @@ input[type="number"] {
 
 .virhe {
     color: red;
+}
+
+.vahavalii {
+    margin: 50px;
 }
