@@ -7,7 +7,7 @@ html {
 
 h2 {
     font-family: monospace;
-    margin-left: 4.2em;
+    margin-left: 3em;
 }
 
 nav {
@@ -37,10 +37,6 @@ hr {
     margin-left: 1.8em;
 }
 
-#answer {
-    color: goldenrod;
-}
-
 #skills {
     margin-left: 2.2rem;
 }
@@ -55,4 +51,33 @@ hr {
     font-size: x-large;
     height: 100%;
     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(167, 251, 255));
+}
+
+@media screen and (max-width: 576px) {
+
+    html {
+        background-image: none;
+    }
+
+    #kokohomma {
+        padding: 1rem;
+        background-image: none;
+    }
+    #list-example {
+        max-width: 18em;
+        min-width: 150px;
+        float: left;
+    }
+
+    #container {
+        margin: 1px;
+        margin-top: 1em;
+        
+    }
+    
+    div {
+        margin: 10px;
+    }
+
+    
 }
