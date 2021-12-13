@@ -2,7 +2,7 @@ html {
     text-align: left;
     font-size: x-large;
     height: 100%;
-    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(169, 235, 240));
+    background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(169, 235, 240));
 }
 
 h2 {
@@ -11,7 +11,8 @@ h2 {
 }
 
 nav {
-    height: 4rem;
+    height: 2.5rem;
+    font-size: medium;
 }
 
 #container {
@@ -53,5 +54,5 @@ hr {
     text-align: left;
     font-size: x-large;
     height: 100%;
-    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(167, 251, 255));
+    background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(167, 251, 255));
 }
