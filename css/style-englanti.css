@@ -1,14 +1,17 @@
 html {
-    padding: 8rem;
     text-align: left;
     font-size: x-large;
     height: 100%;
-    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 238, 255));
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(169, 235, 240));
 }
 
 h2 {
     font-family: monospace;
     margin-left: 4.2em;
+}
+
+nav {
+    height: 4rem;
 }
 
 #container {
@@ -39,4 +42,16 @@ hr {
 
 #skills {
     margin-left: 2.2rem;
+}
+
+#valia {
+    margin-bottom: 15rem;
+}
+
+#kokohomma {
+    padding: 8rem;
+    text-align: left;
+    font-size: x-large;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(167, 251, 255));
 }
