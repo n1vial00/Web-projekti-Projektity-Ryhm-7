@@ -1,14 +1,18 @@
 let images = [document.getElementById("Oulu"), document.getElementById("Turku"), document.getElementById("Helsinki"), document.getElementById("Joensuu"), document.getElementById("Tampere")]
+let score = 0
 
 // Funktio tarkistaa oikean kuvan ja napin ja muutta oikean vastauksen taustavärin
 function checkAnwser(image, button) {
     if(window.getComputedStyle(image).visibility === "visible") {
         button.classList.add("correct")
+        score++
     }
     else {
         //button.classList.add("incorrect")
-        alert("Yritä uudelleen!")
+        alert("Väärä vastaus! Yritä uudelleen!")
+        score--
     }
+    document.getElementById("score").innerText = "Pisteet : " + score
 }
 
 // Funktio uudelle kartalle
