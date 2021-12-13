@@ -74,5 +74,6 @@ document.getElementById("TampereButton").onclick = function() {
     checkAnwser(document.getElementById("Tampere"), document.getElementById("TampereButton"))
     if (document.getElementById("TampereButton").classList.contains("correct")) {
     nextMap(document.getElementById("Tampere"), document.getElementById("Joensuu"))
+    document.getElementById("again").classList.add("visible")
     }
 }
