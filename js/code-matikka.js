@@ -80,7 +80,9 @@ function matikkaToteutus()  {
         maxPisteet++;
         
     }
-    
+    let row = document.createElement("div");
+    row.classList.add("row");
+
     for(l = 0; l < kaikkiLaskut.length; l++) {
         let div = document.createElement("div");
         let div2 = document.createElement("div");
@@ -90,6 +92,7 @@ function matikkaToteutus()  {
         let yhtkMerkki = document.createElement("span");
         let numInput = document.createElement("input");
         
+        div3.classList.add("col-4")
         span.classList.add("luotuLasku");
         span2.classList.add("oikeaVastaus", "tyhj");
         numInput.classList.add("vastaus");
@@ -104,26 +107,15 @@ function matikkaToteutus()  {
 
         div3.append(div, div2);
         
-        document.querySelector("#laskut").append(div3);
+        row.append(div3);
 
         
 
         
-        //document.querySelector("#laskut").innerHTML += "<div><span class='luotuLasku col-4'>" + kaikkiLaskut[l] + '</span> = <input type="number"><br><span class="oikeaVastaus">&nbsp</span> </div>';
+        // document.querySelector("#laskut").innerHTML += "<div><span class='luotuLasku col-4'>" + kaikkiLaskut[l] + '</span> = <input type="number"><br><span class="oikeaVastaus">&nbsp</span> </div>';
     }
-    kaikkiLaskut = document.querySelectorAll("span.luotuLasku");
-
-    let laskuLaskuri = 0;
+    document.querySelector("#laskut").append(row);
     
-    for(o = kaikkiLaskut.length; o > 0; o -= 5) {
-        for(k = 0; k < 5; k++) {
-            let div = document.createElement("div");
-            div.classList.add("col-4");
-            div.append(kaikkilaskut[laskuLaskuri + k]);
-            
-        }
-    }
-
     document.querySelector("#maxPisteet").textContent = maxPisteet;
     
     tarkistusLuku = 0;

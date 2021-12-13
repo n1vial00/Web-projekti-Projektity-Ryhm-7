@@ -1,8 +1,42 @@
 html {
-    padding: 20px;
-    text-align: center;
+    padding: 8rem;
+    text-align: left;
+    font-size: x-large;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 238, 255));
 }
 
-#card {
-    position: static;
+h2 {
+    font-family: monospace;
+    margin-left: 4.2em;
+}
+
+#container {
+    margin: 20px;
+    margin-top: 8em;
+    
+}
+
+div {
+    margin: 10px;
+}
+
+hr {
+    border: 8px solid darkcyan;
+    width: 18em;
+    margin-left: 1.4em;
+}
+
+#list-example {
+    max-width: 18em;
+    min-width: 150px;
+    margin-left: 1.8em;
+}
+
+#answer {
+    color: goldenrod;
+}
+
+#skills {
+    margin-left: 2.2rem;
 }

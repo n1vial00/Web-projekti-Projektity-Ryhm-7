@@ -11,72 +11,82 @@
     <script src="../js/code-englanti.js" defer></script>
 </head>
 <body>
+  
     <h2>Hello!</h2>
-    <p>Let's test your skills in english language!
+    <p id="skills">Let's test your skills in english language!
             <img src="../pics/unionjack.png.png" alt="" style="width: 40px;">
         </p>
+        <div><hr></div>
+
+        <div id="list-example" class="list-group">
+          <a class="list-group-item list-group-item-action" href="#list-item-1">Kysymys 1</a>
+          <a class="list-group-item list-group-item-action" href="#list-item-2">Kysymys 2</a>
+          <a class="list-group-item list-group-item-action" href="#list-item-3">Kysymys 3</a>
+          <a class="list-group-item list-group-item-action" href="#list-item-4">Kysymys 4</a>
+          <a class="list-group-item list-group-item-action" href="#list-item-5">Kysymys 5</a>
+          <a class="list-group-item list-group-item-action" href="#list-item-6">Kysymys 6</a>
+        </div>
+        <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+          
+        </div>
+        
     <div id="container">
        
         
           <div class="row">
             <div class="col">
-                <div class="card" style="width: 18rem;">
+                <div class="card" id="list-item-1" style="width: 18rem;">
                     <img src="../pics/cat.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">Kysymys 1.</h5>
-                      <p class="card-text">Mikä on kissa englanniksi? Valitse seuraavista.</p>
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          Valitse
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" href="#">Lion</a></li>
-                          <li><a class="dropdown-item" href="#">Cat</a></li>
-                          <li><a class="dropdown-item" href="#">Mouse</a></li>
-                        </ul>
-                        <button type="button" class="btn btn-primary">Tarkista</button>
+                      <p class="card-text" id="question">Mikä on kissa englanniksi? Valitse seuraavista.</p>
+                      <select id="list1" onchange="getSelectValue1();">
+                        <option value="valitse">Valitse</option>
+                        <option value="lion">Lion</option>
+                        <option value="cat">Cat</option>
+                        <option value="mouse">Mouse</option>
+                    </select>
+                      
+                        <button type="button" class="btn btn-primary" onclick="tarkista()">Tarkista</button>
+                        <div id="answer"></div>
                       </div>
-                    </div>
                   </div>
             </div>
             <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <img src="../pics/sorry.png" class="card-img-top" alt="..." style="height: 200px;">
+                <div class="card" id="list-item-2" style="width: 18rem;">
+                    <img src="../pics/hands.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Kysymys 2.</h5>
-                      <p class="card-text">Miten pyydät anteeksi englanniksi? Valitse seuraavista.</p>
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          Valitse
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="dropdownmenu">
-                          <li><a class="dropdown-item" href="#">I'm sorry</a></li>
-                          <li><a class="dropdown-item" href="#">I'm blurry</a></li>
-                          <li><a class="dropdown-item" href="#">I'm curry</a></li>
-                        </ul>
-                        <button type="button" class="btn btn-primary">Tarkista</button>
-                      </div>
+                      <h5 class="card-title" >Kysymys 2.</h5>
+                      <p class="card-text" id="question">Miten pyydät anteeksi englanniksi? Valitse seuraavista.</p>
+
+                      <select id="list2" onchange="getSelectValue2();">
+                        <option value="valitse">Valitse</option>
+                        <option value="i'm sorry">I'm sorry</option>
+                        <option value="i'm blurry">I'm blurry</option>
+                        <option value="i'm curry">I'm curry</option>
+                    </select>
+
+                      <button type="button" id="tarkista" class="btn btn-primary" onclick="tarkista()">Tarkista</button>
+                      <div id="answer"></div>
                     </div>
-                    <p>Vastauksesi on väärin! Yritä uudelleen.</p>
                   </div>
             </div>
             <div class="col">
-                <div class="card" style="width: 18rem;">
+                <div class="card" id="list-item-3" style="width: 18rem;">
                     <img src="../pics/classroom.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Kysymys 3.</h5>
-                      <p class="card-text">Olet kysymässä koulun sijaintia, miten sanot? Valitse seuraavista.</p>
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          Valitse
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" href="#">Where is the shop?</a></li>
-                          <li><a class="dropdown-item" href="#">Where is the bank?</a></li>
-                          <li><a class="dropdown-item" href="#">Where is the school?</a></li>
-                          </ul>
-                        <button type="button" class="btn btn-primary">Tarkista</button>
-                      </div>
+                      <h5 class="card-title" >Kysymys 3.</h5>
+                      <p class="card-text" id="question">Olet kysymässä koulun sijaintia, miten sanot? Valitse seuraavista.</p>
+                      
+                      <select id="list3" onchange="getSelectValue3();">
+                        <option value="valitse">Valitse</option>
+                        <option value="where is the shop?">Where is the shop?</option>
+                        <option value="where is the bank?">Where is the bank?</option>
+                        <option value="where is the school?">Where is the school?</option>
+                    </select>
+                    
+                        <button type="button" class="btn btn-primary" onclick="tarkista()">Tarkista</button>
+                        <div id="answer"></div>
                     </div>
                   </div>
             </div>
@@ -91,67 +101,63 @@
         
       <div class="row">
         <div class="col">
-            <div class="card" style="width: 18rem;">
+            <div class="card" id="list-item-4" style="width: 18rem;">
                 <img src="../pics/jungle.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Kysymys 4.</h5>
-                  <p class="card-text">Mikä on sademetsä englanniksi? Valitse seuraavista.</p>
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                      Valitse
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" href="#">Swamp</a></li>
-                      <li><a class="dropdown-item" href="#">Rainforest</a></li>
-                      <li><a class="dropdown-item" href="#">Lapland</a></li>
-                      <li><a class="dropdown-item" href="#">Grainforest</a></li>
-                    </ul>
-                    <button type="button" class="btn btn-primary">Tarkista</button>
-                  </div>
+                  <p class="card-text" id="question">Mikä on sademetsä englanniksi? Valitse seuraavista.</p>
+
+                  <select id="list4" onchange="getSelectValue4();">
+                    <option value="valitse">Valitse</option>
+                    <option value="swamp">Swamp</option>
+                    <option value="rainforest">Rainforest</option>
+                    <option value="lapland">Lapland</option>
+                    <option value="grainforest">Grainforest</option>
+                </select>
+                    <button type="button" class="btn btn-primary" onclick="tarkista()">Tarkista</button>
+                    <div id="answer"></div>
+                  
                 </div>
               </div>
         </div>
         <div class="col">
-            <div class="card" style="width: 18rem;">
+            <div class="card" id="list-item-5" style="width: 18rem;">
                 <img src="../pics/snowflake.jpg" class="card-img-top" alt="..." ">
                 <div class="card-body">
                   <h5 class="card-title">Kysymys 5.</h5>
-                  <p class="card-text">Mikä on lumihiutale englanniksi? Valitse seuraavista.</p>
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                      Valitse
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" href="#">Snowflake</a></li>
-                      <li><a class="dropdown-item" href="#">Cornflake</a></li>
-                      <li><a class="dropdown-item" href="#">Oatflake</a></li>
-                    </ul>
-                    <button type="button" class="btn btn-primary">Tarkista</button>
-                  </div>
+                  <p class="card-text" id="question">Mikä on lumihiutale englanniksi? Valitse seuraavista.</p>
+                  
+                  <select id="list5" onchange="getSelectValue5();">
+                    <option value="valitse">Valitse</option>
+                    <option value="snowflake">Snowflake</option>
+                    <option value="cornflake">Cornflake</option>
+                    <option value="oatflake">Oatflake</option>
+                  </select>  
+                
+                    <button type="button" class="btn btn-primary" onclick="tarkista()">Tarkista</button>
+                    <div id="answer"></div>
+                  
                 </div>
               </div>
         </div>
         <div class="col">
-            <div class="card" style="width: 18rem;">
+            <div class="card" id="list-item-6" style="width: 18rem;">
                 <img src="../pics/avaruusalus.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Kysymys 6.</h5>
-                  <p class="card-text">Mikä on avaruusalus englanniksi? Valitse seuraavista.</p>
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                      Valitse
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" href="#">Play station</a></li>
-                      <li><a class="dropdown-item" href="#">Work station</a></li>
-                      <li><a class="dropdown-item" href="#">Space station</a></li>
-                      <li><a class="dropdown-item" href="#">Train station</a></li>
-                      </ul>
-                    <button type="button" class="btn btn-primary">Tarkista</button>
-                  </div>
+                  <p class="card-text" id="question">Mikä on avaruusalus englanniksi? Valitse seuraavista.</p>
+                  
+                  <select id="list6" onchange="getSelectValue6();">
+                    <option value="valitse">Valitse</option>
+                    <option value="playstation">Play station</option>
+                    <option value="workstation">Work station</option>
+                    <option value="spacestation">Space station</option>
+                    <option value="Trainstation">Train station</option>
+                  </select> 
+
+                    <button type="button" class="btn btn-primary" onclick="tarkista()">Tarkista</button>
+                    <div id="answer"></div>
                 </div>
-                <p>Vastauksesi on väärin! Yritä uudelleen.
-                </p>
               </div>
         </div>
       </div>
