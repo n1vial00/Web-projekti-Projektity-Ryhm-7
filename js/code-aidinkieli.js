@@ -6,7 +6,8 @@
 
 /* --- GLOBAALIT MUUTTUJAT */
 
-const BUTTONS = document.getElementsByTagName("button");
+const MAIN = document.getElementById("main-content");
+const BUTTONS = MAIN.getElementsByTagName("button");
 const ALERTS = document.querySelectorAll(".alert");
 const CORRECT_ANSWERS = [];
 
