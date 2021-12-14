@@ -53,3 +53,8 @@ body {
 .container {
     background: #d9ebfc;
 }
+
+.btn-primary {
+    background-color: #adc8e0;
+    border-color: #adc8e0;
+}
