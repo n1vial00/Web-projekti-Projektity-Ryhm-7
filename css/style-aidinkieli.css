@@ -12,16 +12,7 @@
 /* --- Typografia */
 
 h2 > span {
-    font-weight: 400;
-    text-decoration: underline;
-}
-
-.correct {
-    color: green;
-}
-
-.wrong {
-    color: red;
+    font-style: italic;
 }
 
 /* --- Yleinen rakenne */
@@ -36,7 +27,7 @@ main {
 
 .question-container {
     background: rgba(255, 255, 255, .8);
-    padding: 1.5em;
+    padding: 1em;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -55,12 +46,40 @@ main {
 
 .question {
     display: grid;
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: 1fr;
     gap: 1em;
-    align-items: center;
-    justify-content: start;
 }
 
-#q1 .explanation {
+.result {
     grid-column: 1/-1;
+}
+
+
+/* --- Media Queryt */
+
+@media screen and (min-width:425px) {
+    .question {
+        grid-template-columns: .5fr 1fr;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .question {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .result {
+        grid-column: 3/4;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .question-container {
+        padding: 1.4em;
+    }
+    .question {
+        grid-template-columns: 150px 1fr 1fr;
+    }
+    #q3 .question {
+        grid-template-columns: 250px 1fr 1fr;
+    }
 }
