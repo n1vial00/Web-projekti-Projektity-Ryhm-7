@@ -15,6 +15,7 @@ let answeredQuestions = 0;
 
 BUTTONS[0].addEventListener("click", checkAnswers1);
 BUTTONS[1].addEventListener("click", checkAnswers2);
+BUTTONS[2].addEventListener("click", checkAnswers3);
 
 /* --- VASTAUSTEN TYHJENNYS */
 const ALL_INPUTS = document.querySelectorAll("input");
@@ -110,6 +111,57 @@ function checkAnswers2() {
         disableButton(1);
         giveFeedbackToTheUser(ALERTS[1], INPUTS);
         numberOfCorrectAnswers = 0;
+    }
+}
+
+/**
+ * Kysymys #3
+ */
+function checkAnswers3() {
+    CORRECT_ANSWERS.length = 0;
+    CORRECT_ANSWERS.push("suomalainen", "Marja-Liisa", "Pohjois-Suomi", "Oulun kaupunki", "pohjoispohjanmaalainen");
+    CORRECT_IDS = ["3a-2", "3b-2", "3c-1", "3d-2", "3e-3"];
+
+    const FORMS = document.getElementById("q3").getElementsByTagName("form");
+    const RESULTS = document.getElementById("q3").getElementsByClassName("result");
+
+    answeredQuestions = 0;
+
+    // Tarkistetaan onko kysymykseen vastattu
+    let message = "";
+    let radiosChecked = 0;
+    for (let i = 0; i < FORMS.length; i++) {
+        const RADIOS = FORMS[i].querySelectorAll("input[type=radio]");
+        RADIOS.forEach(radio => {
+            if (radio.checked) {
+                radiosChecked++;
+            }
+        });
+        if (radiosChecked == 0) {
+            message = "Vastaus puuttuu!";
+            ALERTS[2].textContent = "Vastaathan kaikkiin kohtiin ennen vastausten tarkistamista.";
+            ALERTS[2].classList.add("visible");
+        } else if (radiosChecked == 1) {
+            message = "";
+            answeredQuestions++;
+            RADIOS.forEach(r => { r.disabled = true; });
+        }
+        RESULTS[i].textContent = message;
+        radiosChecked = 0;
+    }
+
+    if (answeredQuestions == FORMS.length) {
+        // Tarkistetaan oikeat vastaukset
+        for (let i = 0; i < FORMS.length; i++) {
+            const RADIOS = FORMS[i].querySelectorAll("input[type=radio]");
+            RADIOS.forEach(radio => {
+                if (radio.checked && radio.id != CORRECT_IDS[i]) {
+                    wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i]);
+                } else if (radio.checked && radio.id == CORRECT_IDS[i]) {
+                    correctAnswer(RESULTS[i]);
+                }
+            });
+        }
     }
 }
 
