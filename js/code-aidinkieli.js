@@ -11,11 +11,12 @@ const ALERTS = document.querySelectorAll(".alert");
 const CORRECT_ANSWERS = [];
 
 let numberOfCorrectAnswers = 0;
+let totalNumberOfCorrectAnswers = 0;
 let answeredQuestions = 0;
 
-BUTTONS[0].addEventListener("click", checkAnswers1);
-BUTTONS[1].addEventListener("click", checkAnswers2);
-BUTTONS[2].addEventListener("click", checkAnswers3);
+BUTTONS[1].addEventListener("click", checkAnswers1);
+BUTTONS[2].addEventListener("click", checkAnswers2);
+BUTTONS[3].addEventListener("click", checkAnswers3);
 
 /* --- VASTAUSTEN TYHJENNYS */
 const ALL_INPUTS = document.querySelectorAll("input");
@@ -68,8 +69,9 @@ function checkAnswers1() {
                 wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i]);
             }
         }
-        disableButton(0);
+        disableButton(1);
         giveFeedbackToTheUser(ALERTS[0], SELECTS);
+        totalNumberOfCorrectAnswers += numberOfCorrectAnswers;
         numberOfCorrectAnswers = 0;
     }
 }
@@ -108,8 +110,9 @@ function checkAnswers2() {
                 wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i]);
             }
         }
-        disableButton(1);
+        disableButton(2);
         giveFeedbackToTheUser(ALERTS[1], INPUTS);
+        totalNumberOfCorrectAnswers += numberOfCorrectAnswers;
         numberOfCorrectAnswers = 0;
     }
 }
@@ -121,6 +124,7 @@ function checkAnswers3() {
     CORRECT_ANSWERS.length = 0;
     CORRECT_ANSWERS.push("suomalainen", "Marja-Liisa", "Pohjois-Suomi", "Oulun kaupunki", "pohjoispohjanmaalainen");
     CORRECT_IDS = ["3a-2", "3b-2", "3c-1", "3d-2", "3e-3"];
+    EXPLANATIONS = ["Erisnimien johdokset kirjoitetaan pienellä alkukirjaimella. Esimerkiksi valtion nimestä Suomi johdettu kansallisuudelle sana suomalainen.", "Erisnimet kirjoitetaan isoilla alkukirjaimilla myös kaksiosaisissa nimissä.", "Kaksiosaisen paikannimen jälkiosa kirjoitetaan isolla alkukirjaimella, jos se on itsekin erisnimi. Yhdysmerkin sisältävissä paikannimissä alkuosa kirjoitetaan isolla kirjaimella, jos kokonaisuus tarkoittaa eri aluetta kuin nimen jälkiosa yksin. Vrt. Suomi – Pohjois-Suomi.", "Oulu on erisnimi, joten se kirjoitetaan isolla alkukirjaimella. Yleisnimi kaupunki kirjoitetaan pienellä kirjaimella.", "Nimistä muodostetut adjektiivit ja johdokset, kuten asukkaannimet, kirjoitetaan pienellä alkukirjaimella. Rinnasteisten eli samanarvoisten yhdysosien välissä ei yleensä käytetä yhdysviivaa."];
 
     const FORMS = document.getElementById("q3").getElementsByTagName("form");
     const RESULTS = document.getElementById("q3").getElementsByClassName("result");
@@ -156,16 +160,30 @@ function checkAnswers3() {
             const RADIOS = FORMS[i].querySelectorAll("input[type=radio]");
             RADIOS.forEach(radio => {
                 if (radio.checked && radio.id != CORRECT_IDS[i]) {
-                    wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i]);
+                    wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i], EXPLANATIONS[i]);
                 } else if (radio.checked && radio.id == CORRECT_IDS[i]) {
                     correctAnswer(RESULTS[i]);
                 }
             });
         }
+        disableButton(3);
+        giveFeedbackToTheUser(ALERTS[2], FORMS);
+        totalNumberOfCorrectAnswers += numberOfCorrectAnswers;
+        numberOfCorrectAnswers = 0;
     }
 }
 
+BUTTONS[4].addEventListener("click", function() {
+    document.getElementById("testi").innerHTML = calculateTotal();
+})
+
 /** --- APUFUNKTIOT */
+
+
+function calculateTotal() {
+    return totalNumberOfCorrectAnswers + "/15";
+}
+
 
 /**
  * Lisää uuden Font Awesome -ikonin oikealle vastaukselle
@@ -173,7 +191,7 @@ function checkAnswers3() {
  */
 function correctAnswer(resultLocation) {
     let newIcon = document.createElement("i");
-    newIcon.classList.add("fas", "fa-check-circle", "correct");
+    newIcon.classList.add("fas", "fa-check-circle", "text-success");
     resultLocation.appendChild(newIcon);
     numberOfCorrectAnswers++;
 }
@@ -183,11 +201,19 @@ function correctAnswer(resultLocation) {
  * @param {Array} resultLocation    mistä taulukosta ja indeksistä tuloksen tulostuselementti otetaan
  * @param {Array} answersLocation   mistä taulukosta oikeat vastaukset otetaan
  */
-function wrongAnswer(resultLocation, answersLocation) {
+function wrongAnswer(resultLocation, answersLocation, explanations) {
     let newIcon = document.createElement("i");
-    newIcon.classList.add("fas", "fa-times-circle", "wrong");
-    newIcon.textContent = " " + answersLocation;
-    resultLocation.appendChild(newIcon);
+    newIcon.classList.add("fas", "fa-times-circle", "text-danger");
+    let newText = document.createTextNode(" " + answersLocation);
+    resultLocation.append(newIcon, newText);
+
+    if (explanations) {
+        let p = document.createElement("p");
+        p.style.fontStyle = "italic";
+        let explanation = document.createTextNode(explanations);
+        p.appendChild(explanation);
+        resultLocation.appendChild(p);
+    }
 }
 
 /**
