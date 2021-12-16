@@ -19,3 +19,29 @@ img {
     font-weight: bold;
 }
 
+input {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 70%;
+}
+
+div.guessPlant {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#guessPlant {
+    border: solid 1px black;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.guessPlant button {
+    background-color: lightgreen;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+h4#kasvi {
+    margin-top: 40px;
+}
