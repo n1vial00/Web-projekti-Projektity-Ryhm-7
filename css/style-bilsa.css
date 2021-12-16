@@ -1,3 +1,7 @@
+body {
+    background-image: linear-gradient(to bottom right, rgb(159, 240, 29), rgb(203, 228, 188));
+}
+
 div.guessAnimal {
     display: flex;
     flex-wrap: wrap;
@@ -40,6 +44,10 @@ div.guessPlant {
     background-color: lightgreen;
     border-radius: 5px;
     font-weight: bold;
+}
+
+h3 {
+    margin-left: 10px;
 }
 
 h4#kasvi {
