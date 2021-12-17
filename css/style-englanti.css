@@ -1,6 +1,4 @@
 html {
-    text-align: left;
-    font-size: x-large;
     height: 100%;
     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(169, 235, 240));
 }
@@ -10,10 +8,6 @@ h2 {
     margin-left: 3em;
 }
 
-nav {
-    height: 2.5rem;
-    font-size: medium;
-}
 footer {
     font-size: medium;
 }
