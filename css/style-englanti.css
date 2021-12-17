@@ -16,18 +16,13 @@ nav {
 }
 
 #container {
-    margin: 20px;
+    
     margin-top: 8em;
     
 }
-
-div {
-    margin: 10px;
-}
-
 hr {
     border: 8px solid darkcyan;
-    width: 18em;
+    width: 18.5em;
     margin-left: 1.4em;
 }
 
