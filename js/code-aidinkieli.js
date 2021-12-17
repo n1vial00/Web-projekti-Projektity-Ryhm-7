@@ -264,21 +264,29 @@ function giveFeedbackToTheUser(alertElement, questionsArray) {
         alertElement.classList.add("visible");
     }
 
-    let alertContent = numberOfCorrectAnswers + "/" + questionsArray.length;
+    let alertMessage = "";
     alertElement.classList.remove("alert-secondary");
     alertElement.classList.remove("alert-primary");
     switch (numberOfCorrectAnswers) {
         case 0:
         case 1:
             alertElement.classList.add("alert-danger");
+            alertMessage = "Nyt ei mennyt aivan nappiin. Tämä asia vaatii vielä lisää harjoittelua."
             break;
         case 2:
         case 3:
             alertElement.classList.add("alert-warning");
+            alertMessage = "Kelpo suoritus. Hallitset tämän asian perusteet."
+            break;
         case 4:
+            alertElement.classList.add("alert-success");
+            alertMessage = "Hyvää työtä! Melkein kaikki oikein."
+            break;
         case 5:
             alertElement.classList.add("alert-success");
+            alertMessage = "Erinomaista! Sinulla on homma hallussa."
     }
 
+    let alertContent = numberOfCorrectAnswers + "/" + questionsArray.length + ". " + alertMessage;
     alertElement.textContent = alertContent;
 }
