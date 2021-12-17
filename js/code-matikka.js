@@ -2,8 +2,6 @@
  * Tekijä: Aleksi Viitanen
  */
 
-
-// Tarkistusluvun osoittama arvo kertoo onko tarkistustoimintoa käytetty jo
 let tarkistusLuku = 0;
 
 function getRndInteger(min, max) {
@@ -20,7 +18,11 @@ function vaihdaMatikka() {
     }
 }
 
-
+/**
+ * Funktio tarkistaa ettei minimi- ylitä maksimilukua.
+ * 
+ * @param {Number} index Viittaa .vaihtelut classin alaisiin elementteihin.
+ */
 
 function asetusLogiikka(index) {
     let vaihtelut = document.querySelectorAll(".vaihtelut");
@@ -44,7 +46,9 @@ function asetusLogiikka(index) {
 }
 
 
-// Funktio luo laskut satunnaisgeneraattoria käyttäen
+/**
+ * Funktio luo kaikki laskut asetusten mukaisesti
+ */
 function matikkaToteutus() {
 
     let kaikkiLaskut = new Array;
@@ -60,14 +64,15 @@ function matikkaToteutus() {
     let vMerkit = [];
     let maxPisteet = 0;
 
-    // Tyhjentää laskuille tarkoitetun kentän
     document.querySelector("#laskut").textContent = "";
 
-    // Tarkistetaan onko lukujen määrä enemmän kuin 2
+    // Tarkistetaan onko lukujen määrä enemmän kuin 2 ja laskujen määrä enemmän kuin 1
     if(lukujenM < 2) {
         lukujenM = 2;
     }
-
+    if(laskuM < 1) {
+        laskuM = 1
+    }
 
     // Lisätään välimerkit (vMerkit) taulukkoon, joiden checkbox on rastitettu
     if(plus) {
@@ -82,12 +87,14 @@ function matikkaToteutus() {
     if(jako) {
         vMerkit.push("/");
     }
-    // Looppi tekee niin monta laskua, kuin asetuksissa on toivottu (oletus 5)
+    /**
+     * Looppi tekee niin monta laskua, kuin asetuksissa on toivottu (oletus 5) 
+     * laskunPituus on sattumanvarainen luku 2:n ja käyttäjän määrittämän luvun välillä. Oletus on 3, minimi 2 ja maximi 10.
+     * Laskuun lisätään ensimmäinen luku erikseen, koska alempi looppi lisää aina välimerkin eteen
+     */
+    
     for(i = 0; i < laskuM.value; i++) {
-
-        // laskunPituus on sattumanvarainen luku 2 ja käyttäjän määrittämän luvun välillä. Oletus on 3, minimi 2 ja maximi 10.
         let laskunPituus = Number(getRndInteger(1, lukujenM.value -1));
-        // Laskuun lisätään ensimmäinen luku erikseen, koska alla oleva looppi lisää aina välimerkin eteen
         let lukuJono = Number(getRndInteger(vaihteluMin, vaihteluMax));
         for(j = 0; j < laskunPituus; j++) {
             lukuJono += " " + vMerkit[getRndInteger(0, vMerkit.length - 1)] + " " + getRndInteger(vaihteluMin, vaihteluMax);
@@ -184,10 +191,7 @@ document.querySelector("#teeLaskut").addEventListener("click", matikkaToteutus);
 document.querySelector("#tarkistaLaskutButton").addEventListener("click", tarkistaLaskut);
 document.querySelector(".asetuksetToggle").addEventListener("click", asetuksetToggle);
 
-
-document.querySelectorAll(".vaihtelut").forEach((e, i) => e.onchange = function() { asetusLogiikka(i)
-});
-
+document.querySelectorAll(".vaihtelut").forEach((e, i) => e.onchange = function() {asetusLogiikka(i)});
 
 matikkaToteutus();
 
