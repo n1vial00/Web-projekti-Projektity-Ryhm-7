@@ -6,20 +6,19 @@ body {
 }
 
 #content {
-    padding-top: 100px;
     color: white;
 }
 
-header h1 {
-    margin: 1em;
-}
-
 main {
-    padding-bottom: 5em;
+    padding-bottom: 4em;
 }
 
 h2, p {
     padding: 5px;
+}
+
+h2 {
+    text-shadow: 1px 0 10px rgba(0, 0, 0, .5);
 }
 
 .section p:last-child {
@@ -28,12 +27,18 @@ h2, p {
 
 .section {
     font-size: large;
-    background-color: rgba(0, 0, 0, .4);
+    background-color: rgba(0, 0, 0, .5);
     border-radius: 10px;
     text-align: left;
     padding: .5em;
     margin: .5em;
 }
+
+a {
+    color: rgb(255, 217, 0);
+}
+
+a:hover { color:rgb(255, 0, 242)}
 
 
 /* --------- MEDIA QUERYT */
