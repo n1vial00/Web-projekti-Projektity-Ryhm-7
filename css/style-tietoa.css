@@ -1,0 +1,48 @@
+body {
+    background-image: url("../pics/Tietoa-background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#content {
+    padding-top: 100px;
+    color: white;
+}
+
+header h1 {
+    margin: 1em;
+}
+
+
+header, main {
+    min-height: 100vh;
+}
+
+h2, p {
+    padding: 5px;
+}
+
+p {
+    font-size: large;
+    background-color: rgba(0, 0, 0, .4);
+    border-radius: 10px;
+}
+
+
+/* --------- MEDIA QUERYT */
+
+@media screen and (min-width:1000px) {
+    header .container-fluid {
+        padding-right: 5em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #content {
+        padding-top: 50px;
+    }
+
+    body {
+        background-size: auto;
+    }
+}
