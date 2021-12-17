@@ -14,19 +14,25 @@ header h1 {
     margin: 1em;
 }
 
-
-header, main {
-    min-height: 100vh;
+main {
+    padding-bottom: 5em;
 }
 
 h2, p {
     padding: 5px;
 }
 
-p {
+.section p:last-child {
+    padding-bottom: 0;
+}
+
+.section {
     font-size: large;
     background-color: rgba(0, 0, 0, .4);
     border-radius: 10px;
+    text-align: left;
+    padding: .5em;
+    margin: .5em;
 }
 
 
