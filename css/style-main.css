@@ -18,6 +18,7 @@ header, main {
 }
 
 #content {
+    /* Background pattern from Toptal Subtle Patterns */
     background-image: url("../pics/double-bubble-outline.png");
     padding: 1em;
 }
