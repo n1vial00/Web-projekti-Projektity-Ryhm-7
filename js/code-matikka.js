@@ -21,7 +21,7 @@ function vaihdaMatikka() {
 /**
  * Funktio tarkistaa ettei minimi- ylitä maksimilukua.
  * 
- * @param {Number} index Viittaa .vaihtelut classin alaisiin elementteihin.
+ * @param {Number} index Viittaa .vaihtelut luokan alaisiin elementteihin.
  */
 
 function asetusLogiikka(index) {
@@ -109,6 +109,7 @@ function matikkaToteutus() {
     let row = document.createElement("div");
     row.classList.add("row");
 
+    // Tämä looppi rakentaa laskut sivulle ja antaa niille oikeat luokat
     for(l = 0; l < kaikkiLaskut.length; l++) {
         let div = document.createElement("div");
         let div2 = document.createElement("div");
