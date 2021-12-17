@@ -143,6 +143,7 @@ function matikkaToteutus() {
     document.querySelector("#maxPisteet").textContent = maxPisteet;
     
     tarkistusLuku = 0;
+    document.querySelector("#pisteet").textContent = 0;
 }
 
 
