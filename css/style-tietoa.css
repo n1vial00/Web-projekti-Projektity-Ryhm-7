@@ -2,6 +2,7 @@ body {
     background-image: url("../pics/Tietoa-background.jpg");
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 
 #content {
