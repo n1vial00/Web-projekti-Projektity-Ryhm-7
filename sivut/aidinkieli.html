@@ -61,8 +61,8 @@
     <!-- CONTENT -->
     <main id="main-content" class="container-fluid d-flex flex-column justify-content-center gap-4 p-md-4 p-lg-5">
         <!-- ALOITUS -->
-        <div class="question-wrapper d-flex flex-column align-items-start gap-4">
-            <h1>Äikkävisa</h1>
+        <div class="question-wrapper d-flex flex-column align-items-center gap-4">
+            <h1 class="display-1 text-light">Äikkävisa</h1>
             <div class="question-container col-12 col-lg-9 col-xl-6">
                 <p class="lead">Tässä visassa pääset testaamaan ja harjoittelemaan äidinkielen osaamistasi.
                     Ensimmäisessä tehtävässä kerrataan sanaluokkia, toisessa taivutetaan verbejä, ja kolmannessa
@@ -73,8 +73,8 @@
         </div>
         <!-- KYSYMYKSET -->
         <!-- Kysymys 1 -->
-        <div class="question-wrapper d-flex flex-column align-items-start gap-4">
-            <h2>1. Mikä on annetun sanan sanaluokka?</h2>
+        <div class="question-wrapper d-flex flex-column align-items-center gap-4 d-none">
+            <h2 class="display-5 text-light">1. Mikä on annetun sanan sanaluokka?</h2>
             <div class="question-container col-12 col-lg-9 col-xl-6" id="q1">
                 <div class="question" id="1a">
                     <label for="koira" class="lead">a) koira</label>
@@ -136,14 +136,14 @@
                     </select>
                     <span class="result"></span>
                 </div>
+                <div class="alert alert-secondary">Vastaa kaikkiin kohtiin ja paina lopuksi "Tarkista vastaukset".</div>
             </div>
             <button type="button" class="btn btn-primary">Tarkista vastaukset</button>
-            <div class="alert alert-primary hidden"></div>
         </div>
 
         <!-- Kysymys 2 -->
-        <div class="d-flex flex-column align-items-start gap-4">
-            <h2>2. Taivuta verbiä <span>laulaa</span> annetuissa persoonamuodoissa</h2>
+        <div class="question-wrapper d-flex flex-column align-items-center gap-4 d-none">
+            <h2 class="display-5 text-light">2. Taivuta verbiä <span>laulaa</span> annetuissa persoonamuodoissa</h2>
             <div class="question-container col-12 col-lg-9 col-xl-6" id="q2">
                 <div class="question" id="2a">
                     <label for="m2p" class="lead">a) m.2.p.</label>
@@ -170,14 +170,14 @@
                     <input type="text" name="y2p" id="y2p">
                     <span class="result"></span>
                 </div>
+                <div class="alert alert-secondary">Vastaa kaikkiin kohtiin ja paina lopuksi "Tarkista vastaukset".</div>
             </div>
             <button type="button" class="btn btn-primary">Tarkista vastaukset</button>
-            <div class="alert alert-primary hidden"></div>
         </div>
 
         <!-- Kysymys 3 -->
-        <div class="d-flex flex-column align-items-start gap-4">
-            <h2>3. Miten seuraavat sanat kirjoitetaan oikein?</h2>
+        <div class="question-wrapper d-flex flex-column align-items-center gap-4 d-none">
+            <h2 class="display-5 text-light">3. Miten seuraavat sanat kirjoitetaan oikein?</h2>
             <div class="question-container col-12 col-lg-9 col-xl-6" id="q3">
                 <div class="question">
                     <span class="lead">a) suomalainen</span>
@@ -279,15 +279,10 @@
                     </form>
                     <p class="result"></p>
                 </div>
+                <div class="alert alert-secondary">Vastaa kaikkiin kohtiin ja paina lopuksi "Tarkista vastaukset".</div>
             </div>
             <button type="button" class="btn btn-primary">Tarkista vastaukset</button>
-            <div class="alert alert-primary hidden"></div>
         </div>
-
-        <div class="d-flex flex-column align-items-start gap-4">
-        <button type="button" class="btn btn-dark">Katso tuloksesi</button>
-        <div id="testi"></div>
-    </div>
     </main>
 
     <!-- FOOTER -->

@@ -9,6 +9,7 @@ const MAIN = document.getElementById("main-content");
 const BUTTONS = MAIN.getElementsByTagName("button");
 const ALERTS = document.querySelectorAll(".alert");
 const CORRECT_ANSWERS = [];
+const WRAPPERS = document.getElementsByClassName("question-wrapper");
 
 let errorMessage = "";
 let numberOfCorrectAnswers = 0;
@@ -27,10 +28,18 @@ ALL_SELECTS.forEach(select => {
 });
 
 /* --- TAPAHTUMAKÄSITTELIJÄT BUTTONEILLE */
+BUTTONS[0].addEventListener("click", start);
 BUTTONS[1].addEventListener("click", checkAnswers1);
 BUTTONS[2].addEventListener("click", checkAnswers2);
 BUTTONS[3].addEventListener("click", checkAnswers3);
+BUTTONS[4].classList.add("hidden");
 
+
+function start() {
+    WRAPPERS[0].classList.add("d-none");
+    WRAPPERS[1].classList.remove("d-none");
+    WRAPPERS[1].classList.add("d-block");
+}
 
 /* --- BUTTONIEN FUNKTIOT */
 
@@ -67,7 +76,8 @@ function checkAnswers1() {
                 wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i]);
             }
         }
-        finishExercise(1, 0, SELECTS);
+        finishExercise(0, SELECTS);
+        moveToNextExercise(1, 1, 2);
     }
 }
 
@@ -95,13 +105,14 @@ function checkAnswers2() {
     // Tarkistetaan vastaukset ja annetaan palaute
     if (answeredQuestions == INPUTS.length) {
         for (let i = 0; i < INPUTS.length; i++) {
-            if (INPUTS[i].value == CORRECT_ANSWERS[i]) {
+            if (INPUTS[i].value.toLowerCase() == CORRECT_ANSWERS[i]) {
                 correctAnswer(RESULTS[i]);
             } else {
                 wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i]);
             }
         }
-        finishExercise(2, 1, INPUTS);
+        finishExercise(1, INPUTS);
+        moveToNextExercise(2, 2, 3);
     }
 }
 
@@ -150,11 +161,11 @@ function checkAnswers3() {
                 }
             });
         }
-        finishExercise(3, 2, FORMS);
+        finishExercise(2, FORMS);
     }
 }
 
-BUTTONS[4].addEventListener("click", function() {
+BUTTONS[4].addEventListener("click", function () {
     document.getElementById("testi").innerHTML = calculateTotal();
 })
 
@@ -166,11 +177,24 @@ BUTTONS[4].addEventListener("click", function() {
  * @param {Integer} alertIndex      missä indeksissä alert sijaitsee ALERTS-taulukossa
  * @param {Array} lengthSource      minkä taulukon pituudesta lasketaan vastausten kokonaismäärä
  */
-function finishExercise(buttonIndex, alertIndex, lengthSource) {
-    disableButton(buttonIndex);
+function finishExercise(alertIndex, lengthSource) {
     giveFeedbackToTheUser(ALERTS[alertIndex], lengthSource);
     totalNumberOfCorrectAnswers += numberOfCorrectAnswers;
     numberOfCorrectAnswers = 0;
+}
+
+/**
+ * Piilottaa tarkistupainikkeen, tuo esiin siirtymispainikkeen. Siirtymispainiketta klikatessa näkyvillä oleva tehtävä vaihtuu
+ * @param {Integer} buttonIndex     käsiteltävän buttonin indeksi BUTTONS-taulukossa
+ * @param {Integer} questionToHide  piilotettavan tehtävän wrapperin indeksi WRAPPERS-taulukossa
+ * @param {Integer} questionToShow  esiin tuotavan tehtävän wrapperin indeksi -||-
+ */
+function moveToNextExercise(buttonIndex, questionToHide, questionToShow) {
+    BUTTONS[buttonIndex].textContent = "Siirry seuraavaan tehtävään";
+    BUTTONS[buttonIndex].addEventListener("click", function () {
+        WRAPPERS[questionToHide].classList.add("d-none");
+        WRAPPERS[questionToShow].classList.remove("d-none");
+    });
 }
 
 /**
@@ -187,7 +211,8 @@ function calculateTotal() {
 function inputsNotOk(alertIndex) {
     errorMessage = "Vastaus puuttuu!";
     ALERTS[alertIndex].textContent = "Vastaathan kaikkiin kohtiin ennen vastausten tarkistamista.";
-    ALERTS[alertIndex].classList.add("visible");
+    ALERTS[alertIndex].classList.remove("alert-secondary");
+    ALERTS[alertIndex].classList.add("alert-primary");
 }
 
 /**
@@ -230,16 +255,6 @@ function wrongAnswer(resultLocation, answersLocation, explanations) {
 }
 
 /**
- * Poistaa "Tarkista vastaukset" -buttonin käytöstä, kun vastaukset on tarkistettu
- * @param {Number} buttonIndex    buttonin indeksi BUTTONS-taulukossa
- */
-function disableButton(buttonIndex) {
-    BUTTONS[buttonIndex].classList.remove("btn-primary");
-    BUTTONS[buttonIndex].classList.add("btn-secondary");
-    BUTTONS[buttonIndex].disabled = true;
-}
-
-/**
  * Tarkistaa oikeiden vastausten määrän ja antaa niiden perusteella palautteen käyttäjälle
  * @param {*} alertElement      kysymykselle kuuluvan alert-elementin sijainti muuttujassa
  * @param {*} questionsArray    taulukko tai kokoelma, jonka pituudesta lasketaan kysymysten kokonaismäärä
@@ -250,6 +265,8 @@ function giveFeedbackToTheUser(alertElement, questionsArray) {
     }
 
     let alertContent = numberOfCorrectAnswers + "/" + questionsArray.length;
+    alertElement.classList.remove("alert-secondary");
+    alertElement.classList.remove("alert-primary");
     switch (numberOfCorrectAnswers) {
         case 0:
         case 1:
