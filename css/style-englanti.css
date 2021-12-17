@@ -1,6 +1,4 @@
 html {
-    text-align: left;
-    font-size: x-large;
     height: 100%;
     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(169, 235, 240));
 }
@@ -10,24 +8,17 @@ h2 {
     margin-left: 3em;
 }
 
-nav {
-    height: 2.5rem;
+footer {
     font-size: medium;
 }
-
 #container {
-    margin: 20px;
+   
     margin-top: 8em;
     
 }
-
-div {
-    margin: 10px;
-}
-
 hr {
     border: 8px solid darkcyan;
-    width: 18em;
+    width: 18.5em;
     margin-left: 1.4em;
 }
 
@@ -51,6 +42,9 @@ hr {
     font-size: x-large;
     height: 100%;
     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(167, 251, 255));
+}
+.dropdown-menu {
+    font-size: medium;
 }
 
 @media screen and (max-width: 576px) {
