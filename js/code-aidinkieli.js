@@ -4,19 +4,16 @@
 -- Web-projekti, ryhmä 7
 */
 
-/* --- GLOBAALIT MUUTTUJAT */
+/* --- GLOBAALIT VAKIOT JA MUUTTUJAT */
 const MAIN = document.getElementById("main-content");
 const BUTTONS = MAIN.getElementsByTagName("button");
 const ALERTS = document.querySelectorAll(".alert");
 const CORRECT_ANSWERS = [];
 
+let errorMessage = "";
 let numberOfCorrectAnswers = 0;
 let totalNumberOfCorrectAnswers = 0;
 let answeredQuestions = 0;
-
-BUTTONS[1].addEventListener("click", checkAnswers1);
-BUTTONS[2].addEventListener("click", checkAnswers2);
-BUTTONS[3].addEventListener("click", checkAnswers3);
 
 /* --- VASTAUSTEN TYHJENNYS */
 const ALL_INPUTS = document.querySelectorAll("input");
@@ -28,6 +25,11 @@ const ALL_SELECTS = document.querySelectorAll("select");
 ALL_SELECTS.forEach(select => {
     select.selectedIndex = 0;
 });
+
+/* --- TAPAHTUMAKÄSITTELIJÄT BUTTONEILLE */
+BUTTONS[1].addEventListener("click", checkAnswers1);
+BUTTONS[2].addEventListener("click", checkAnswers2);
+BUTTONS[3].addEventListener("click", checkAnswers3);
 
 
 /* --- BUTTONIEN FUNKTIOT */
@@ -47,17 +49,13 @@ function checkAnswers1() {
 
     // Tarkistetaan onko kysymykseen vastattu
     for (let i = 0; i < SELECTS.length; i++) {
-        let message = "";
         if (SELECTS[i].selectedIndex == 0) {
-            message = "Vastaus puuttuu!";
-            ALERTS[0].textContent = "Vastaathan kaikkiin kohtiin ennen vastausten tarkistamista.";
-            ALERTS[0].classList.add("visible");
+            inputsNotOk(0);
         } else {
-            message = "";
+            inputsOk();
             SELECTS[i].disabled = true;
-            answeredQuestions++;
         }
-        RESULTS[i].textContent = message;
+        RESULTS[i].textContent = errorMessage;
     }
 
     // Tarkistetaan vastaukset ja annetaan palaute
@@ -69,10 +67,7 @@ function checkAnswers1() {
                 wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i]);
             }
         }
-        disableButton(1);
-        giveFeedbackToTheUser(ALERTS[0], SELECTS);
-        totalNumberOfCorrectAnswers += numberOfCorrectAnswers;
-        numberOfCorrectAnswers = 0;
+        finishExercise(1, 0, SELECTS);
     }
 }
 
@@ -87,18 +82,14 @@ function checkAnswers2() {
 
     answeredQuestions = 0;
 
-    let message = "";
     for (let i = 0; i < INPUTS.length; i++) {
         if (INPUTS[i].value.length < 1) {
-            message = "Vastaus puuttuu!";
-            ALERTS[1].textContent = "Vastaathan kaikkiin kohtiin ennen vastausten tarkistamista.";
-            ALERTS[1].classList.add("visible");
+            inputsNotOk(1);
         } else {
-            message = "";
+            inputsOk();
             INPUTS[i].disabled = true;
-            answeredQuestions++;
         }
-        RESULTS[i].textContent = message;
+        RESULTS[i].textContent = errorMessage;
     }
 
     // Tarkistetaan vastaukset ja annetaan palaute
@@ -110,10 +101,7 @@ function checkAnswers2() {
                 wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i]);
             }
         }
-        disableButton(2);
-        giveFeedbackToTheUser(ALERTS[1], INPUTS);
-        totalNumberOfCorrectAnswers += numberOfCorrectAnswers;
-        numberOfCorrectAnswers = 0;
+        finishExercise(2, 1, INPUTS);
     }
 }
 
@@ -132,7 +120,6 @@ function checkAnswers3() {
     answeredQuestions = 0;
 
     // Tarkistetaan onko kysymykseen vastattu
-    let message = "";
     let radiosChecked = 0;
     for (let i = 0; i < FORMS.length; i++) {
         const RADIOS = FORMS[i].querySelectorAll("input[type=radio]");
@@ -142,20 +129,17 @@ function checkAnswers3() {
             }
         });
         if (radiosChecked == 0) {
-            message = "Vastaus puuttuu!";
-            ALERTS[2].textContent = "Vastaathan kaikkiin kohtiin ennen vastausten tarkistamista.";
-            ALERTS[2].classList.add("visible");
+            inputsNotOk(2);
         } else if (radiosChecked == 1) {
-            message = "";
-            answeredQuestions++;
-            RADIOS.forEach(r => { r.disabled = true; });
+            inputsOk();
+            RADIOS.forEach(radio => { radio.disabled = true; });
         }
-        RESULTS[i].textContent = message;
+        RESULTS[i].textContent = errorMessage;
         radiosChecked = 0;
     }
 
     if (answeredQuestions == FORMS.length) {
-        // Tarkistetaan oikeat vastaukset
+        // Tarkistetaan oikeat vastaukset ja annetaan palaute
         for (let i = 0; i < FORMS.length; i++) {
             const RADIOS = FORMS[i].querySelectorAll("input[type=radio]");
             RADIOS.forEach(radio => {
@@ -166,10 +150,7 @@ function checkAnswers3() {
                 }
             });
         }
-        disableButton(3);
-        giveFeedbackToTheUser(ALERTS[2], FORMS);
-        totalNumberOfCorrectAnswers += numberOfCorrectAnswers;
-        numberOfCorrectAnswers = 0;
+        finishExercise(3, 2, FORMS);
     }
 }
 
@@ -179,11 +160,43 @@ BUTTONS[4].addEventListener("click", function() {
 
 /** --- APUFUNKTIOT */
 
+/**
+ * Kun kaikkiin kysymyksen kohtiin on vastattu > poistaa tarkistusnapin käytöstä, antaa käyttäjälle palautteen suorituksesta, lisää tehtävästä saadut pisteet kokonaispistemäärään ja nollaa tehtäväkohtaisen pistelaskurin
+ * @param {Integer} buttonIndex     missä indeksissä suljettava button sijaitsee BUTTONS-taulukossa
+ * @param {Integer} alertIndex      missä indeksissä alert sijaitsee ALERTS-taulukossa
+ * @param {Array} lengthSource      minkä taulukon pituudesta lasketaan vastausten kokonaismäärä
+ */
+function finishExercise(buttonIndex, alertIndex, lengthSource) {
+    disableButton(buttonIndex);
+    giveFeedbackToTheUser(ALERTS[alertIndex], lengthSource);
+    totalNumberOfCorrectAnswers += numberOfCorrectAnswers;
+    numberOfCorrectAnswers = 0;
+}
 
+/**
+ * Laskee ja palauttaa kokonaispistemäärän
+ */
 function calculateTotal() {
     return totalNumberOfCorrectAnswers + "/15";
 }
 
+/**
+ * Päivittää virheilmoituksen, jos käyttäjä ei ole vastannut kaikkiin kohtiin
+ * @param {Integer} alertIndex      missä indeksissä muutosten kohteena oleva alert-elementti sijaitsee ALERTS-taulukossa 
+ */
+function inputsNotOk(alertIndex) {
+    errorMessage = "Vastaus puuttuu!";
+    ALERTS[alertIndex].textContent = "Vastaathan kaikkiin kohtiin ennen vastausten tarkistamista.";
+    ALERTS[alertIndex].classList.add("visible");
+}
+
+/**
+ * Tyhjentää virheilmoituksen ja merkitsee kohdan vastatuksi, kun käyttäjä on vastannut siihen
+ */
+function inputsOk() {
+    errorMessage = "";
+    answeredQuestions++;
+}
 
 /**
  * Lisää uuden Font Awesome -ikonin oikealle vastaukselle
@@ -218,12 +231,12 @@ function wrongAnswer(resultLocation, answersLocation, explanations) {
 
 /**
  * Poistaa "Tarkista vastaukset" -buttonin käytöstä, kun vastaukset on tarkistettu
- * @param {Number} indexOfButton    buttonin indeksi BUTTONS-taulukossa
+ * @param {Number} buttonIndex    buttonin indeksi BUTTONS-taulukossa
  */
-function disableButton(indexOfButton) {
-    BUTTONS[indexOfButton].classList.remove("btn-primary");
-    BUTTONS[indexOfButton].classList.add("btn-secondary");
-    BUTTONS[indexOfButton].disabled = true;
+function disableButton(buttonIndex) {
+    BUTTONS[buttonIndex].classList.remove("btn-primary");
+    BUTTONS[buttonIndex].classList.add("btn-secondary");
+    BUTTONS[buttonIndex].disabled = true;
 }
 
 /**
