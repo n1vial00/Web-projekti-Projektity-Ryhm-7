@@ -2,6 +2,9 @@ body {
     background-color: rgb(33, 37, 41);
     color: rgb(0, 0, 0);
     background-image: url(../pics/maantieto-tausta.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 h1 {
