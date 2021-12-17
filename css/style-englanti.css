@@ -14,7 +14,9 @@ nav {
     height: 2.5rem;
     font-size: medium;
 }
-
+footer {
+    font-size: medium;
+}
 #container {
     
     margin-top: 8em;
@@ -46,6 +48,9 @@ hr {
     font-size: x-large;
     height: 100%;
     background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(167, 251, 255));
+}
+.dropdown-menu {
+    font-size: medium;
 }
 
 @media screen and (max-width: 576px) {
