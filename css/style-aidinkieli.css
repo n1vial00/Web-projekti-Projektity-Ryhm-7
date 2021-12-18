@@ -9,7 +9,7 @@
     visibility: visible;
 }
 
-/* --- Typografia */
+/* --- Typografia yms. */
 
 h1, h2 {
     text-shadow: 0px 0px 5px rgba(0,0,0,.1);
@@ -22,6 +22,18 @@ h2 {
 }
 h2 > span {
     font-style: italic;
+}
+
+p::-moz-selection { background: #a35f49; color: #fff; }
+p::selection { background: #a35f49; color: #fff; }
+
+.btn:hover {
+    background-color: rgb(94, 94, 94);
+    border-color: rgb(94, 94, 94);
+}
+
+.btn {
+    margin-bottom: 2em; 
 }
 
 /* --- Yleinen rakenne */
@@ -80,6 +92,10 @@ h2 > span {
     }
     .result {
         grid-column: 3/4;
+    }
+    footer {
+        position: fixed;
+        bottom: 0;
     }
 }
 

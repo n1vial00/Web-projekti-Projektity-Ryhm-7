@@ -212,7 +212,7 @@ function inputsNotOk(alertIndex) {
     errorMessage = "Vastaus puuttuu!";
     ALERTS[alertIndex].textContent = "Vastaathan kaikkiin kohtiin ennen vastausten tarkistamista.";
     ALERTS[alertIndex].classList.remove("alert-secondary");
-    ALERTS[alertIndex].classList.add("alert-primary");
+    ALERTS[alertIndex].classList.add("alert-dark");
 }
 
 /**
@@ -266,7 +266,7 @@ function giveFeedbackToTheUser(alertElement, questionsArray) {
 
     let alertMessage = "";
     alertElement.classList.remove("alert-secondary");
-    alertElement.classList.remove("alert-primary");
+    alertElement.classList.remove("alert-dark");
     switch (numberOfCorrectAnswers) {
         case 0:
         case 1:
