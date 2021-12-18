@@ -24,8 +24,8 @@ h2 > span {
     font-style: italic;
 }
 
-p::-moz-selection { background: #a35f49; color: #fff; }
-p::selection { background: #a35f49; color: #fff; }
+*::-moz-selection { background: #a35f49; color: #fff; }
+*::selection { background: #a35f49; color: #fff; }
 
 .btn:hover {
     background-color: rgb(94, 94, 94);
@@ -34,6 +34,10 @@ p::selection { background: #a35f49; color: #fff; }
 
 .btn {
     margin-bottom: 2em; 
+}
+
+.results-overall i {
+    margin-right: 10px;
 }
 
 /* --- Yleinen rakenne */

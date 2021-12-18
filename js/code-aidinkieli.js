@@ -11,10 +11,20 @@ const ALERTS = document.querySelectorAll(".alert");
 const CORRECT_ANSWERS = [];
 const WRAPPERS = document.getElementsByClassName("question-wrapper");
 
+// ---------------------------- POISTA TÄMÄ
+
+/*
+for (let i = 0; i < WRAPPERS.length; i++) {
+    WRAPPERS[i].classList.remove("d-none")
+}
+*/
+
+// -----------------------------------------
+
 let errorMessage = "";
 let numberOfCorrectAnswers = 0;
-let totalNumberOfCorrectAnswers = 0;
 let answeredQuestions = 0;
+const POINTS = [];
 
 /* --- VASTAUSTEN TYHJENNYS */
 const ALL_INPUTS = document.querySelectorAll("input");
@@ -27,19 +37,17 @@ ALL_SELECTS.forEach(select => {
     select.selectedIndex = 0;
 });
 
+const ALL_RADIOS = document.querySelectorAll("input[type=radio]");
+ALL_RADIOS.forEach(radio => {
+    radio.checked = false;
+})
+
 /* --- TAPAHTUMAKÄSITTELIJÄT BUTTONEILLE */
 BUTTONS[0].addEventListener("click", start);
 BUTTONS[1].addEventListener("click", checkAnswers1);
 BUTTONS[2].addEventListener("click", checkAnswers2);
 BUTTONS[3].addEventListener("click", checkAnswers3);
-BUTTONS[4].classList.add("hidden");
-
-
-function start() {
-    WRAPPERS[0].classList.add("d-none");
-    WRAPPERS[1].classList.remove("d-none");
-    WRAPPERS[1].classList.add("d-block");
-}
+BUTTONS[4].addEventListener("click", refresh);
 
 /* --- BUTTONIEN FUNKTIOT */
 
@@ -76,7 +84,7 @@ function checkAnswers1() {
                 wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i]);
             }
         }
-        finishExercise(0, SELECTS);
+        giveFeedbackToTheUser(ALERTS[0], SELECTS);
         moveToNextExercise(1, 1, 2);
     }
 }
@@ -111,7 +119,7 @@ function checkAnswers2() {
                 wrongAnswer(RESULTS[i], CORRECT_ANSWERS[i]);
             }
         }
-        finishExercise(1, INPUTS);
+        giveFeedbackToTheUser(ALERTS[1], INPUTS)
         moveToNextExercise(2, 2, 3);
     }
 }
@@ -121,9 +129,9 @@ function checkAnswers2() {
  */
 function checkAnswers3() {
     CORRECT_ANSWERS.length = 0;
-    CORRECT_ANSWERS.push("suomalainen", "Marja-Liisa", "Pohjois-Suomi", "Oulun kaupunki", "pohjoispohjanmaalainen");
+    CORRECT_ANSWERS.push("suomalainen", "Marja-Liisa", "Pohjois-Suomi", "Oulun kaupunki", "suomen kieli");
     CORRECT_IDS = ["3a-2", "3b-2", "3c-1", "3d-2", "3e-3"];
-    EXPLANATIONS = ["Erisnimien johdokset kirjoitetaan pienellä alkukirjaimella. Esimerkiksi valtion nimestä Suomi johdettu kansallisuudelle sana suomalainen.", "Erisnimet kirjoitetaan isoilla alkukirjaimilla myös kaksiosaisissa nimissä.", "Kaksiosaisen paikannimen jälkiosa kirjoitetaan isolla alkukirjaimella, jos se on itsekin erisnimi. Yhdysmerkin sisältävissä paikannimissä alkuosa kirjoitetaan isolla kirjaimella, jos kokonaisuus tarkoittaa eri aluetta kuin nimen jälkiosa yksin. Vrt. Suomi – Pohjois-Suomi.", "Oulu on erisnimi, joten se kirjoitetaan isolla alkukirjaimella. Yleisnimi kaupunki kirjoitetaan pienellä kirjaimella.", "Nimistä muodostetut adjektiivit ja johdokset, kuten asukkaannimet, kirjoitetaan pienellä alkukirjaimella. Rinnasteisten eli samanarvoisten yhdysosien välissä ei yleensä käytetä yhdysviivaa."];
+    EXPLANATIONS = ["Erisnimien johdokset kirjoitetaan pienellä alkukirjaimella. Esimerkiksi valtion nimestä Suomi johdettu kansallisuudelle sana suomalainen.", "Erisnimet kirjoitetaan isoilla alkukirjaimilla myös kaksiosaisissa nimissä.", "Kaksiosaisen paikannimen jälkiosa kirjoitetaan isolla alkukirjaimella, jos se on itsekin erisnimi. Yhdysmerkin sisältävissä paikannimissä alkuosa kirjoitetaan isolla kirjaimella, jos kokonaisuus tarkoittaa eri aluetta kuin nimen jälkiosa yksin. Vrt. Suomi =/= Pohjois-Suomi.", "Oulu on erisnimi, joten se kirjoitetaan isolla alkukirjaimella. Yleisnimi kaupunki kirjoitetaan pienellä kirjaimella.", "Kielten nimitykset kirjoitetaan pienellä alkukirjaimella. Jos nimityksen yhteydessä käytetään sanaa <u>kieli</u>, sanat kirjoitetaan erilleen. Huomaa kuitenkin esim. <u>suomenkielinen</u>-tyyppiset adjektiivit kirjoitetaan yhteen."];
 
     const FORMS = document.getElementById("q3").getElementsByTagName("form");
     const RESULTS = document.getElementById("q3").getElementsByClassName("result");
@@ -161,26 +169,28 @@ function checkAnswers3() {
                 }
             });
         }
-        finishExercise(2, FORMS);
+        giveFeedbackToTheUser(ALERTS[2], FORMS)
+        moveToNextExercise(3, 3, 4);
     }
 }
 
-BUTTONS[4].addEventListener("click", function () {
-    document.getElementById("testi").innerHTML = calculateTotal();
-})
 
-/** --- APUFUNKTIOT */
+/** --- MUUT FUNKTIOT */
 
 /**
- * Kun kaikkiin kysymyksen kohtiin on vastattu > poistaa tarkistusnapin käytöstä, antaa käyttäjälle palautteen suorituksesta, lisää tehtävästä saadut pisteet kokonaispistemäärään ja nollaa tehtäväkohtaisen pistelaskurin
- * @param {Integer} buttonIndex     missä indeksissä suljettava button sijaitsee BUTTONS-taulukossa
- * @param {Integer} alertIndex      missä indeksissä alert sijaitsee ALERTS-taulukossa
- * @param {Array} lengthSource      minkä taulukon pituudesta lasketaan vastausten kokonaismäärä
+ * Piilottaa aloitustekstit ja tuo esiin ensimmäisen tehtävän
  */
-function finishExercise(alertIndex, lengthSource) {
-    giveFeedbackToTheUser(ALERTS[alertIndex], lengthSource);
-    totalNumberOfCorrectAnswers += numberOfCorrectAnswers;
-    numberOfCorrectAnswers = 0;
+function start() {
+    WRAPPERS[0].classList.add("d-none");
+    WRAPPERS[1].classList.remove("d-none");
+    WRAPPERS[1].classList.add("d-block");
+}
+
+/**
+ * Lataa sivun uudelleen
+ */
+function refresh() {
+    window.location.reload();
 }
 
 /**
@@ -190,18 +200,54 @@ function finishExercise(alertIndex, lengthSource) {
  * @param {Integer} questionToShow  esiin tuotavan tehtävän wrapperin indeksi -||-
  */
 function moveToNextExercise(buttonIndex, questionToHide, questionToShow) {
-    BUTTONS[buttonIndex].textContent = "Siirry seuraavaan tehtävään";
+    let buttonText = "";
+    if (buttonIndex == 3) { buttonText = "Katso lopputulokset" }
+    else { buttonText = "Siirry seuraavaan tehtävään" }
+    BUTTONS[buttonIndex].textContent = buttonText;
     BUTTONS[buttonIndex].addEventListener("click", function () {
         WRAPPERS[questionToHide].classList.add("d-none");
         WRAPPERS[questionToShow].classList.remove("d-none");
+        if (buttonIndex == 3) { showResults(); }
     });
+
 }
 
 /**
- * Laskee ja palauttaa kokonaispistemäärän
+ * Laskee lopulliset pisteet ja esittää niiden perusteella visan lopputulokset ja palautteen käyttäjälle
  */
-function calculateTotal() {
-    return totalNumberOfCorrectAnswers + "/15";
+function showResults() {
+    const POINTS_SPANS = WRAPPERS[4].getElementsByTagName("span");
+    const RESULTS_OVERALL = document.querySelector(".results-overall");
+    let newIcon = document.createElement("i");
+    let totalPoints = POINTS[0] + POINTS[1] + POINTS[2];
+    let resultsText = "";
+
+    if (totalPoints < 5) {
+        newIcon.classList.add("bi", "bi-emoji-neutral");
+        resultsText = "Aijai! Vielä riittää kerrattavaa.";
+        RESULTS_OVERALL.classList.add("text-danger");
+    } else if (totalPoints < 10) {
+        newIcon.classList.add("bi", "bi-emoji-smile");
+        resultsText = "Ei huono.";
+        RESULTS_OVERALL.classList.add("text-warning");
+    } else {
+        newIcon.classList.add("bi", "bi-emoji-sunglasses")
+        resultsText = "Hieno suoritus!";
+        RESULTS_OVERALL.classList.add("text-success");
+    }
+
+    for (let i = 0; i < POINTS_SPANS.length; i++) {
+        POINTS_SPANS[i].textContent = POINTS[i] + "/5";
+        if (POINTS[i] < 2) {
+            POINTS_SPANS[i].classList.add("bg-danger")
+        } else if (POINTS[i] < 4) {
+            POINTS_SPANS[i].classList.add("bg-warning")
+        } else {
+            POINTS_SPANS[i].classList.add("bg-success")
+        }
+    }
+    
+    RESULTS_OVERALL.append(newIcon, resultsText);
 }
 
 /**
@@ -248,16 +294,15 @@ function wrongAnswer(resultLocation, answersLocation, explanations) {
     if (explanations) {
         let p = document.createElement("p");
         p.style.fontStyle = "italic";
-        let explanation = document.createTextNode(explanations);
-        p.appendChild(explanation);
+        p.innerHTML = explanations;
         resultLocation.appendChild(p);
     }
 }
 
 /**
  * Tarkistaa oikeiden vastausten määrän ja antaa niiden perusteella palautteen käyttäjälle
- * @param {*} alertElement      kysymykselle kuuluvan alert-elementin sijainti muuttujassa
- * @param {*} questionsArray    taulukko tai kokoelma, jonka pituudesta lasketaan kysymysten kokonaismäärä
+ * @param {variable} alertElement      mihin alert-elementtiin palaute tulostetaan
+ * @param {Array} questionsArray    taulukko tai kokoelma, jonka pituudesta lasketaan kysymysten kokonaismäärä
  */
 function giveFeedbackToTheUser(alertElement, questionsArray) {
     if (!alertElement.classList.contains("visible")) {
@@ -289,4 +334,7 @@ function giveFeedbackToTheUser(alertElement, questionsArray) {
 
     let alertContent = numberOfCorrectAnswers + "/" + questionsArray.length + ". " + alertMessage;
     alertElement.textContent = alertContent;
+
+    POINTS.push(numberOfCorrectAnswers);
+    numberOfCorrectAnswers = 0;
 }
