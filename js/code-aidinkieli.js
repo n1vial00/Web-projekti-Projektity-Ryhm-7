@@ -82,18 +82,6 @@ function checkAnswers1() {
 }
 
 /**
- * Päivittää progress barin
- * @param {Number} progressBarIndex     missä indeksissä päivitettävä elementti sijaitsee PROGRESS_BARS-taulukossa
- * @param {String} width                ["33.3%] miten leveäksi päivitetään
- * @param {Number} questionsAnswered               moneenko kysymykseen on vastattu
- */
-function updateProgressBar(progressBarIndex, width, questionsAnswered) {
-    PROGRESS_BARS[progressBarIndex].style.width = width;
-    PROGRESS_BARS[progressBarIndex].classList.add("progress-bg");
-    PROGRESS_BARS[progressBarIndex].textContent = questionsAnswered + "/3";
-}
-
-/**
  * Kysymys #2
  */
 function checkAnswers2() {
@@ -216,6 +204,18 @@ function moveToNextExercise(buttonIndex, questionToHide, questionToShow) {
         if (buttonIndex == 3) { showResults(); }
     });
 
+}
+
+/**
+ * Päivittää progress barin
+ * @param {Number} progressBarIndex     missä indeksissä päivitettävä elementti sijaitsee PROGRESS_BARS-taulukossa
+ * @param {String} width                ["33.3%] miten leveäksi päivitetään
+ * @param {Number} questionsAnswered               moneenko kysymykseen on vastattu
+ */
+ function updateProgressBar(progressBarIndex, width, questionsAnswered) {
+    PROGRESS_BARS[progressBarIndex].style.width = width;
+    PROGRESS_BARS[progressBarIndex].classList.add("progress-bg");
+    PROGRESS_BARS[progressBarIndex].textContent = questionsAnswered + "/3";
 }
 
 /**
