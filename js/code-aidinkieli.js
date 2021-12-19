@@ -36,9 +36,9 @@ ALL_RADIOS.forEach(radio => {
 /* --- TAPAHTUMAKÄSITTELIJÄT BUTTONEILLE */
 BUTTONS[0].addEventListener("click", start);
 BUTTONS[1].addEventListener("click", checkAnswers1);
-BUTTONS[2].addEventListener("click", checkAnswers2);
-BUTTONS[3].addEventListener("click", checkAnswers3);
-BUTTONS[4].addEventListener("click", refresh);
+BUTTONS[3].addEventListener("click", checkAnswers2);
+BUTTONS[5].addEventListener("click", checkAnswers3);
+BUTTONS[7].addEventListener("click", refresh);
 
 /* --- BUTTONIEN FUNKTIOT */
 
@@ -77,7 +77,7 @@ function checkAnswers1() {
         }
         giveFeedbackToTheUser(ALERTS[0], SELECTS);
         updateProgressBar(0, "33.3%", 1);
-        moveToNextExercise(1, 1, 2);
+        moveToNextExercise(1, 2, 1, 2);
     }
 }
 
@@ -113,7 +113,7 @@ function checkAnswers2() {
         }
         giveFeedbackToTheUser(ALERTS[1], INPUTS)
         updateProgressBar(1, "66.6%", 2);
-        moveToNextExercise(2, 2, 3);
+        moveToNextExercise(3, 4, 2, 3);
     }
 }
 
@@ -164,7 +164,7 @@ function checkAnswers3() {
         }
         giveFeedbackToTheUser(ALERTS[2], FORMS)
         updateProgressBar(2, "100%", 3);
-        moveToNextExercise(3, 3, 4);
+        moveToNextExercise(5, 6, 3, 4);
     }
 }
 
@@ -189,21 +189,22 @@ function refresh() {
 
 /**
  * Piilottaa tarkistupainikkeen, tuo esiin siirtymispainikkeen. Siirtymispainiketta klikatessa näkyvillä oleva tehtävä vaihtuu
- * @param {Integer} buttonIndex     käsiteltävän buttonin indeksi BUTTONS-taulukossa
+ * @param {Integer} buttonToHide     piilotettavan buttonin indeksi BUTTONS-taulukossa
+ * @param {Integer} buttonToShow     näytettävän buttonin indeksi BUTTONS-taulukossa
  * @param {Integer} questionToHide  piilotettavan tehtävän wrapperin indeksi WRAPPERS-taulukossa
  * @param {Integer} questionToShow  esiin tuotavan tehtävän wrapperin indeksi -||-
  */
-function moveToNextExercise(buttonIndex, questionToHide, questionToShow) {
-    let buttonText = "";
-    if (buttonIndex == 3) { buttonText = "Katso lopputulokset" }
-    else { buttonText = "Siirry seuraavaan tehtävään" }
-    BUTTONS[buttonIndex].textContent = buttonText;
-    BUTTONS[buttonIndex].addEventListener("click", function () {
+function moveToNextExercise(buttonToHide, buttonToShow, questionToHide, questionToShow) {
+    BUTTONS[buttonToHide].classList.add("d-none");
+    BUTTONS[buttonToShow].classList.remove("d-none");
+    BUTTONS[buttonToShow].focus();
+    BUTTONS[buttonToShow].addEventListener("click", function () {
         WRAPPERS[questionToHide].classList.add("d-none");
         WRAPPERS[questionToShow].classList.remove("d-none");
-        if (buttonIndex == 3) { showResults(); }
+        if (buttonToShow == 6) {
+            showResults();
+        }
     });
-
 }
 
 /**
@@ -212,7 +213,7 @@ function moveToNextExercise(buttonIndex, questionToHide, questionToShow) {
  * @param {String} width                ["33.3%] miten leveäksi päivitetään
  * @param {Number} questionsAnswered               moneenko kysymykseen on vastattu
  */
- function updateProgressBar(progressBarIndex, width, questionsAnswered) {
+function updateProgressBar(progressBarIndex, width, questionsAnswered) {
     PROGRESS_BARS[progressBarIndex].style.width = width;
     PROGRESS_BARS[progressBarIndex].classList.add("progress-bg");
     PROGRESS_BARS[progressBarIndex].textContent = questionsAnswered + "/3";
@@ -226,19 +227,19 @@ function showResults() {
     const RESULTS_OVERALL = document.querySelector(".results-overall");
     let newIcon = document.createElement("i");
     let totalPoints = POINTS[0] + POINTS[1] + POINTS[2];
-    let resultsText = "";
+    let resultsText = totalPoints + "/15: ";
 
     if (totalPoints < 5) {
         newIcon.classList.add("bi", "bi-emoji-neutral");
-        resultsText = "Aijai! Vielä riittää kerrattavaa.";
+        resultsText += "Aijai! Vielä riittää kerrattavaa.";
         RESULTS_OVERALL.classList.add("text-danger");
     } else if (totalPoints < 10) {
         newIcon.classList.add("bi", "bi-emoji-smile");
-        resultsText = "Ei huono.";
+        resultsText += "Ei huono.";
         RESULTS_OVERALL.classList.add("text-warning");
     } else {
         newIcon.classList.add("bi", "bi-emoji-sunglasses")
-        resultsText = "Hieno suoritus!";
+        resultsText += "Hieno suoritus!";
         RESULTS_OVERALL.classList.add("text-success");
     }
 
