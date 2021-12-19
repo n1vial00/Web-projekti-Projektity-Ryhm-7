@@ -40,6 +40,20 @@ h2 > span {
     margin-right: 10px;
 }
 
+.progress {
+    height: 40px;
+    margin-top: -2em;
+}
+
+.progress-bar {
+    background: inherit;
+    font-size: 1.5em;
+}
+
+.progress-bg {
+    background: #a35f49;
+}
+
 /* --- Yleinen rakenne */
 
 #main-content {

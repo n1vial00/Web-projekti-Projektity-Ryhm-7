@@ -10,16 +10,7 @@ const BUTTONS = MAIN.getElementsByTagName("button");
 const ALERTS = document.querySelectorAll(".alert");
 const CORRECT_ANSWERS = [];
 const WRAPPERS = document.getElementsByClassName("question-wrapper");
-
-// ---------------------------- POISTA TÄMÄ
-
-/*
-for (let i = 0; i < WRAPPERS.length; i++) {
-    WRAPPERS[i].classList.remove("d-none")
-}
-*/
-
-// -----------------------------------------
+const PROGRESS_BARS = document.getElementsByClassName("progress-bar");
 
 let errorMessage = "";
 let numberOfCorrectAnswers = 0;
@@ -85,8 +76,21 @@ function checkAnswers1() {
             }
         }
         giveFeedbackToTheUser(ALERTS[0], SELECTS);
+        updateProgressBar(0, "33.3%", 1);
         moveToNextExercise(1, 1, 2);
     }
+}
+
+/**
+ * Päivittää progress barin
+ * @param {Number} progressBarIndex     missä indeksissä päivitettävä elementti sijaitsee PROGRESS_BARS-taulukossa
+ * @param {String} width                ["33.3%] miten leveäksi päivitetään
+ * @param {Number} questionsAnswered               moneenko kysymykseen on vastattu
+ */
+function updateProgressBar(progressBarIndex, width, questionsAnswered) {
+    PROGRESS_BARS[progressBarIndex].style.width = width;
+    PROGRESS_BARS[progressBarIndex].classList.add("progress-bg");
+    PROGRESS_BARS[progressBarIndex].textContent = questionsAnswered + "/3";
 }
 
 /**
@@ -120,6 +124,7 @@ function checkAnswers2() {
             }
         }
         giveFeedbackToTheUser(ALERTS[1], INPUTS)
+        updateProgressBar(1, "66.6%", 2);
         moveToNextExercise(2, 2, 3);
     }
 }
@@ -170,6 +175,7 @@ function checkAnswers3() {
             });
         }
         giveFeedbackToTheUser(ALERTS[2], FORMS)
+        updateProgressBar(2, "100%", 3);
         moveToNextExercise(3, 3, 4);
     }
 }
@@ -246,7 +252,7 @@ function showResults() {
             POINTS_SPANS[i].classList.add("bg-success")
         }
     }
-    
+
     RESULTS_OVERALL.append(newIcon, resultsText);
 }
 
